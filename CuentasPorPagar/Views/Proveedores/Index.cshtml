@@ -1,0 +1,94 @@
+﻿@model IEnumerable<Proveedor>
+@{
+    ViewData["Title"] = "Vista Proveedores";
+}
+
+<h1>Lista de proveedores</h1>
+
+<a asp-action="Crear" asp-controller="Proveedores" class="btn btn-primary mb-5">Agregar proveedor</a>
+
+
+<table class="table" id="example">
+    <thead>
+        <tr>
+            <th>Acciones</th>
+            <th>Nombre</th>
+            <th>Email</th>
+            <th>Direccion</th>
+            <th>Telefono</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var proveedor in Model)
+        {
+            <tr>
+                <td>
+                    <a class="btn btn-primary" asp-route-Id="@proveedor.Id" asp-action="Actualizar">Editar</a>
+                    <a class="btn btn-danger"  data-id="@proveedor.Id" data-action="Eliminar">Borrar</a>
+                </td>
+                <td>@proveedor.Nombre</td>
+                <td>@proveedor.Email</td>
+                <td>@proveedor.Direccion</td>
+                <td>@proveedor.Telefono</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts{
+
+    <script>
+
+        $("document").ready(function(){
+
+
+            new DataTable('#example', {
+                rowReorder: true
+            });
+
+            // $("a[data-action='Eliminar']").click(function () {
+            //     let id = $(this).data("id")
+            //     if (confirm("¿Estás seguro de que deseas eliminar este elemento?")) {
+            //         $.ajax({
+            //             type: "POST",
+            //             url: "/Proveedores/Eliminar/" + id,
+            //             success: function () {
+            //                 // Puedes realizar alguna acción adicional aquí, como actualizar la vista
+            //                 location.reload() // Recargar la página
+            //             },
+            //             error: function () {
+            //                 alert("Error al eliminar el elemento.")
+            //             }
+            //         });
+            //     }
+            // });
+
+            $("a[data-action='Eliminar']").click(function () {
+                let id = $(this).data("id");
+                let row = $(this).closest("tr"); // Obtener la fila actual
+
+                if (confirm("¿Estás seguro de que deseas eliminar este elemento?")) {
+                    $.ajax({
+                        type: "POST",
+                        url: "/Proveedores/Eliminar/" + id,
+                        success: function () {
+                            // Eliminar la fila de la tabla
+                            row.remove();
+                        },
+                        error: function () {
+                            alert("Error al eliminar el elemento.");
+                        }
+                    });
+                }
+            });
+        })
+
+
+
+    </script>
+
+
+}
+
+
+
