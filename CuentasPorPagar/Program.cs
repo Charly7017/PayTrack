@@ -2,14 +2,18 @@ using CuentasPorPagar.Models;
 using CuentasPorPagar.Servicios;
 using Microsoft.AspNetCore.Identity;
 
+
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddTransient<IRepositorioProveedor,RepositorioProveedor>();
+builder.Services.AddTransient<IRepositorioCompras, RepositoriosCompras>();
 builder.Services.AddTransient<IServicioUsuarios, ServicioUsuarios>();
 builder.Services.AddTransient<IRepositorioUsuarios,RepositorioUsuarios>();
 builder.Services.AddTransient<IUserStore<Usuario>, UsuarioStore>();
+builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.AddIdentityCore<Usuario>(opciones =>
 {
     opciones.Password.RequireDigit = false;

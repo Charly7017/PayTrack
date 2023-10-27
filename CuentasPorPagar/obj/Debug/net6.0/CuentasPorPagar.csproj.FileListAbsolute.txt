@@ -95,3 +95,5 @@ C:\Users\Carlos Santamaria\Documents\ASP.NET_MVC\CuentasPorPagar\CuentasPorPagar
 C:\Users\Carlos Santamaria\Documents\ASP.NET_MVC\CuentasPorPagar\CuentasPorPagar\obj\Debug\net6.0\CuentasPorPagar.pdb
 C:\Users\Carlos Santamaria\Documents\ASP.NET_MVC\CuentasPorPagar\CuentasPorPagar\obj\Debug\net6.0\CuentasPorPagar.genruntimeconfig.cache
 C:\Users\Carlos Santamaria\Documents\ASP.NET_MVC\CuentasPorPagar\CuentasPorPagar\obj\Debug\net6.0\ref\CuentasPorPagar.dll
+C:\Users\Carlos Santamaria\Documents\ASP.NET_MVC\CuentasPorPagar\CuentasPorPagar\bin\Debug\net6.0\AutoMapper.dll
+C:\Users\Carlos Santamaria\Documents\ASP.NET_MVC\CuentasPorPagar\CuentasPorPagar\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll

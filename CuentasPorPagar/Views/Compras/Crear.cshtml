@@ -1,0 +1,51 @@
+﻿@model CompraCreacionViewModel
+
+@{
+    ViewData["Title"] = "Agregar compra";
+}
+
+
+
+<h1>Agrega una compra</h1>
+
+
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+
+<form asp-controller="Compras" asp-action="Crear">
+
+    <div class="mb-3">
+        <label class="form-label" asp-for="FechaCompra"></label>
+        <input class="form-control" asp-for="FechaCompra" />
+        <span asp-validation-for="FechaCompra" class="text-danger"></span>
+    </div>
+
+
+    <div class="mb-3">
+        <label class="form-label" asp-for="FechaVencimiento"></label>
+        <input class="form-control" asp-for="FechaVencimiento" />
+        <span asp-validation-for="FechaVencimiento" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label" asp-for="Total"></label>
+        <input class="form-control" asp-for="Total" />
+        <span asp-validation-for="Total" class="text-danger"></span>
+    </div>
+
+
+    <div class="mb-3">
+        <label class="form-label" asp-for="TipoCompra"></label>
+        <select class="form-control" asp-for="TipoCompra" asp-items="Model.TipoCompraLista"></select>
+        <span asp-validation-for="TipoCompra" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Enviar</button>
+    <a class="btn btn-secondary" asp-action="Index">Cancelar</a>
+
+</form>
+
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

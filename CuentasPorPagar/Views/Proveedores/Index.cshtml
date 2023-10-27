@@ -67,7 +67,7 @@
                 let id = $(this).data("id");
                 let row = $(this).closest("tr"); // Obtener la fila actual
 
-                if (confirm("¿Estás seguro de que deseas eliminar este elemento?")) {
+                if (confirm("¿Estás seguro de que deseas eliminar este registro?")) {
                     $.ajax({
                         type: "POST",
                         url: "/Proveedores/Eliminar/" + id,

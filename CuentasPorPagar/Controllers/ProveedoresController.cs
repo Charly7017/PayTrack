@@ -1,4 +1,5 @@
-﻿using CuentasPorPagar.Models;
+﻿using AutoMapper;
+using CuentasPorPagar.Models;
 using CuentasPorPagar.Servicios;
 using Microsoft.AspNetCore.Mvc;
 
@@ -53,15 +54,32 @@ namespace CuentasPorPagar.Controllers
 			var usuarioId = servicioUsuarios.ObtenerIdUsuario();
 			var proveedor = await repositorioProveedor.ObtenerPorId(id,usuarioId);
 
-			return View(proveedor);
+
+            if (proveedor is null)
+            {
+                return RedirectToAction("Index");
+            }
+
+
+            return View(proveedor);
 
 		}
 
 		[HttpPost]
 		public async Task<IActionResult> Actualizar(Proveedor proveedor)
 		{
+			var usuarioId = servicioUsuarios.ObtenerIdUsuario();
+			var proveedorr = repositorioProveedor.ObtenerPorId(proveedor.Id,usuarioId);
 
-			await repositorioProveedor.Actualizar(proveedor);
+			if (proveedorr is null)
+			{
+				return RedirectToAction("Index");
+			}
+            
+
+
+
+            await repositorioProveedor.Actualizar(proveedor);
 
 			return RedirectToAction("Index");
 

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Carlos Santamaria\\Documents\\ASP.NET_MVC\\CuentasPorPagar\\CuentasPorPagar\\CuentasPorPagar.csproj": {}
+    "C:\\Users\\Carlos Santamaria\\Documents\\Programacion\\C#\\ASP.NET_MVC\\CuentasPorPagar\\CuentasPorPagar\\CuentasPorPagar.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Carlos Santamaria\\Documents\\ASP.NET_MVC\\CuentasPorPagar\\CuentasPorPagar\\CuentasPorPagar.csproj": {
+    "C:\\Users\\Carlos Santamaria\\Documents\\Programacion\\C#\\ASP.NET_MVC\\CuentasPorPagar\\CuentasPorPagar\\CuentasPorPagar.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Carlos Santamaria\\Documents\\ASP.NET_MVC\\CuentasPorPagar\\CuentasPorPagar\\CuentasPorPagar.csproj",
+        "projectUniqueName": "C:\\Users\\Carlos Santamaria\\Documents\\Programacion\\C#\\ASP.NET_MVC\\CuentasPorPagar\\CuentasPorPagar\\CuentasPorPagar.csproj",
         "projectName": "CuentasPorPagar",
-        "projectPath": "C:\\Users\\Carlos Santamaria\\Documents\\ASP.NET_MVC\\CuentasPorPagar\\CuentasPorPagar\\CuentasPorPagar.csproj",
+        "projectPath": "C:\\Users\\Carlos Santamaria\\Documents\\Programacion\\C#\\ASP.NET_MVC\\CuentasPorPagar\\CuentasPorPagar\\CuentasPorPagar.csproj",
         "packagesPath": "C:\\Users\\Carlos Santamaria\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Carlos Santamaria\\Documents\\ASP.NET_MVC\\CuentasPorPagar\\CuentasPorPagar\\obj\\",
+        "outputPath": "C:\\Users\\Carlos Santamaria\\Documents\\Programacion\\C#\\ASP.NET_MVC\\CuentasPorPagar\\CuentasPorPagar\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -44,6 +44,14 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[12.0.1, )"
+            },
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[10.1.1, )"
+            },
             "Dapper": {
               "target": "Package",
               "version": "[2.1.15, )"
