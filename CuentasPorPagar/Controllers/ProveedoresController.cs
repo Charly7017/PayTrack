@@ -77,8 +77,6 @@ namespace CuentasPorPagar.Controllers
 			}
             
 
-
-
             await repositorioProveedor.Actualizar(proveedor);
 
 			return RedirectToAction("Index");

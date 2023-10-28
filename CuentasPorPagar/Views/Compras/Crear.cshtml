@@ -15,11 +15,22 @@
 <form asp-controller="Compras" asp-action="Crear">
 
     <div class="mb-3">
+        <label class="form-label" asp-for="ProveedorId"></label>
+        <select class="form-control" asp-for="ProveedorId" asp-items="@Model.Proveedores"></select>
+        <span asp-validation-for="ProveedorId" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label" asp-for="Descripcion"></label>
+        <textarea class="form-control" asp-for="Descripcion"></textarea>
+        <span asp-validation-for="Descripcion" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
         <label class="form-label" asp-for="FechaCompra"></label>
         <input class="form-control" asp-for="FechaCompra" />
         <span asp-validation-for="FechaCompra" class="text-danger"></span>
     </div>
-
 
     <div class="mb-3">
         <label class="form-label" asp-for="FechaVencimiento"></label>
@@ -36,9 +47,13 @@
 
     <div class="mb-3">
         <label class="form-label" asp-for="TipoCompra"></label>
-        <select class="form-control" asp-for="TipoCompra" asp-items="Model.TipoCompraLista"></select>
+        <select class="form-control" asp-for="TipoCompra" asp-items="Model.TiposCompras"></select>
         <span asp-validation-for="TipoCompra" class="text-danger"></span>
     </div>
+
+
+
+
 
     <button type="submit" class="btn btn-primary">Enviar</button>
     <a class="btn btn-secondary" asp-action="Index">Cancelar</a>

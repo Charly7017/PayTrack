@@ -2,6 +2,8 @@
 using CuentasPorPagar.Models;
 using CuentasPorPagar.Servicios;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Runtime.CompilerServices;
 
 namespace CuentasPorPagar.Controllers
 {
@@ -9,15 +11,17 @@ namespace CuentasPorPagar.Controllers
     {
 
         private readonly IRepositorioCompras repositorioCompras;
+        private readonly IRepositorioProveedor repositorioProveedor;
         private readonly IServicioUsuarios servicioUsuarios;
         private readonly IMapper mapper;
 
         public ComprasController(IRepositorioCompras repositorioCompras, IServicioUsuarios servicioUsuarios,
-            IMapper mapper)
+            IMapper mapper, IRepositorioProveedor repositorioProveedor)
         {
             this.repositorioCompras = repositorioCompras;
             this.servicioUsuarios = servicioUsuarios;
             this.mapper = mapper;
+            this.repositorioProveedor = repositorioProveedor;
         }
 
         public async Task<IActionResult> Index()
@@ -29,11 +33,15 @@ namespace CuentasPorPagar.Controllers
         }
 
         [HttpGet]
-        public IActionResult Crear()
+        public async Task<IActionResult> Crear()
         {
+            var usuarioId = servicioUsuarios.ObtenerIdUsuario();
+
             var modelo = new CompraCreacionViewModel();
 
-            return View(new CompraCreacionViewModel());
+            modelo.Proveedores = await ObtenerProveedores(usuarioId);
+
+            return View(modelo);
         }
 
         [HttpPost]
@@ -58,7 +66,14 @@ namespace CuentasPorPagar.Controllers
             var usuarioId = servicioUsuarios.ObtenerIdUsuario();
             var compra = await repositorioCompras.ObtenerPorId(id, usuarioId);
 
+            if (compra is null)
+            {
+                return RedirectToAction("NoEncontrado", "Home");
+            }
+
+
             var modelo = mapper.Map<CompraCreacionViewModel>(compra);
+            modelo.Proveedores = await ObtenerProveedores(usuarioId);
 
             return View(modelo);
         }
@@ -67,6 +82,16 @@ namespace CuentasPorPagar.Controllers
         [HttpPost]
         public async Task<IActionResult> Actualizar(CompraCreacionViewModel compra)
         {
+
+           
+            var usuarioId = servicioUsuarios.ObtenerIdUsuario();
+            var compraa = await repositorioCompras.ObtenerPorId(compra.Id, usuarioId);
+
+            if (compraa is null)
+            {
+                return RedirectToAction("NoEncontrado", "Home");
+            }
+
             await repositorioCompras.Actualizar(compra);
 
             return RedirectToAction("Index");
@@ -89,6 +114,18 @@ namespace CuentasPorPagar.Controllers
 
             return RedirectToAction("Index");
         }
+
+
+        //Se obtienen los tipos de tareas pero en forma de SelectListItem
+        private async Task<IEnumerable<SelectListItem>> ObtenerProveedores(int usuarioId)
+        {
+            var proveedores = await repositorioProveedor.Obtener(usuarioId);
+
+            return proveedores.Select(p => new SelectListItem(p.Nombre, p.Id.ToString()));
+        }
+
+
+
 
 
 

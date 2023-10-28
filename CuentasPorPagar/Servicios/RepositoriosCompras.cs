@@ -30,11 +30,13 @@ namespace CuentasPorPagar.Servicios
 
             var parameters = new
             {
+                compra.ProveedorId,
+                compra.Descripcion,
                 compra.FechaCompra,
                 compra.FechaVencimiento,
                 compra.Total,
                 compra.TipoCompra,
-                compra.UsuarioId
+                compra.UsuarioId,
             };
 
 
@@ -73,6 +75,8 @@ namespace CuentasPorPagar.Servicios
             var parameters = new
             {
                 compra.Id,
+                compra.ProveedorId,
+                compra.Descripcion,
                 compra.FechaCompra,
                 compra.FechaVencimiento,
                 compra.Total,

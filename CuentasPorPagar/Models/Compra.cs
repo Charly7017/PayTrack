@@ -7,6 +7,12 @@ namespace CuentasPorPagar.Models
     public class Compra
     {
         public int Id { get; set; }
+        [Display(Name ="Proveedor que realizo la compra")]
+        public int ProveedorId { get; set; }
+
+        [Required(ErrorMessage = "La descripcion es obligatoria.")]
+        [Display(Name = "Descripcion de la compra")]
+        public string  Descripcion { get; set; }
 
         [Required(ErrorMessage = "La fecha de compra es obligatoria.")]
         [Display(Name = "Fecha de Compra")]
@@ -29,6 +35,6 @@ namespace CuentasPorPagar.Models
         [Display(Name = "Tipo de Compra")]
         public string TipoCompra { get; set; }
         public int UsuarioId { get; set; }
-
+        public string Proveedor { get; set; }
     }
 }

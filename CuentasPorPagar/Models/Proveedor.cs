@@ -25,11 +25,6 @@ namespace CuentasPorPagar.Models
 		[Phone(ErrorMessage = "El número de teléfono no es válido.")]
 		public string Telefono { get; set; }
         public int UsuarioId { get; set; }
-
-
-       
-
-
     }
 
 

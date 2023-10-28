@@ -13,6 +13,8 @@
     <thead>
         <tr>
             <th>Acciones</th>
+            <th>Proveedor</th>
+            <th>Descripcion</th>
             <th>Fecha Compra</th>
             <th>Fecha Vencimiento</th>
             <th>Total</th>
@@ -27,6 +29,8 @@
                     <a class="btn btn-primary" asp-route-Id="@compra.Id" asp-action="Actualizar">Editar</a>
                     <a class="btn btn-danger" data-id="@compra.Id" data-action="Eliminar">Borrar</a>
                 </td>
+                <td>@compra.Proveedor</td>
+                <td>@compra.Descripcion</td>
                 <td>@compra.FechaCompra</td>
                 <td>@compra.FechaVencimiento</td>
                 <td>@compra.Total</td>
