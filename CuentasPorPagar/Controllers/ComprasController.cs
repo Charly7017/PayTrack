@@ -26,7 +26,7 @@ namespace CuentasPorPagar.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var usuarioId = servicioUsuarios.ObtenerIdUsuario();
+            var usuarioId = servicioUsuarios.ObtenerUsuarioId();
             var compras = await  repositorioCompras.Obtener(usuarioId);
 
             return View(compras);
@@ -35,7 +35,7 @@ namespace CuentasPorPagar.Controllers
         [HttpGet]
         public async Task<IActionResult> Crear()
         {
-            var usuarioId = servicioUsuarios.ObtenerIdUsuario();
+            var usuarioId = servicioUsuarios.ObtenerUsuarioId();
 
             var modelo = new CompraCreacionViewModel();
 
@@ -52,7 +52,7 @@ namespace CuentasPorPagar.Controllers
                 return View(compra);
             }
 
-            compra.UsuarioId= servicioUsuarios.ObtenerIdUsuario();
+            compra.UsuarioId= servicioUsuarios.ObtenerUsuarioId();
 
             await repositorioCompras.Crear(compra);
 
@@ -63,7 +63,7 @@ namespace CuentasPorPagar.Controllers
         [HttpGet]
         public async Task<IActionResult> Actualizar(int id)
         {
-            var usuarioId = servicioUsuarios.ObtenerIdUsuario();
+            var usuarioId = servicioUsuarios.ObtenerUsuarioId();
             var compra = await repositorioCompras.ObtenerPorId(id, usuarioId);
 
             if (compra is null)
@@ -82,9 +82,7 @@ namespace CuentasPorPagar.Controllers
         [HttpPost]
         public async Task<IActionResult> Actualizar(CompraCreacionViewModel compra)
         {
-
-           
-            var usuarioId = servicioUsuarios.ObtenerIdUsuario();
+            var usuarioId = servicioUsuarios.ObtenerUsuarioId();
             var compraa = await repositorioCompras.ObtenerPorId(compra.Id, usuarioId);
 
             if (compraa is null)
@@ -102,7 +100,7 @@ namespace CuentasPorPagar.Controllers
         [HttpPost]
         public async Task<IActionResult> Eliminar(int id)
         {
-            var usuarioId = servicioUsuarios.ObtenerIdUsuario();
+            var usuarioId = servicioUsuarios.ObtenerUsuarioId();
             var compra = repositorioCompras.ObtenerPorId(id,usuarioId);
 
             if (compra is null)
@@ -116,7 +114,7 @@ namespace CuentasPorPagar.Controllers
         }
 
 
-        //Se obtienen los tipos de tareas pero en forma de SelectListItem
+        //Se obtienen los proveedores pero en forma de SelectListItem
         private async Task<IEnumerable<SelectListItem>> ObtenerProveedores(int usuarioId)
         {
             var proveedores = await repositorioProveedor.Obtener(usuarioId);

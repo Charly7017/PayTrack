@@ -1,0 +1,44 @@
+﻿@model ControlCalidadCreacionViewModel
+
+
+@{
+    ViewData["Title"] = "Vista actualizar";
+}
+
+
+
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+
+
+<form asp-controller="ControlCalidad" asp-action="Actualizar">
+
+    <div class="mb-3">
+        <label class="form-label" asp-for="CompraId"></label>
+        <select class="form-control" asp-for="CompraId" asp-items="@Model.Compras"></select>
+        <span asp-validation-for="CompraId" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label" asp-for="Fecha"></label>
+        <input class="form-control" asp-for="Fecha" />
+        <span asp-validation-for="Fecha" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label" asp-for="Estado"></label>
+        <select class="form-control" asp-for="Estado" asp-items="@Model.Estados"></select>
+        <span asp-validation-for="Estado" class="text-danger"></span>
+    </div>
+
+
+
+    <button type="submit" class="btn btn-primary">Enviar</button>
+    <a class="btn btn-secondary" asp-action="Index">Cancelar</a>
+
+</form>
+
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

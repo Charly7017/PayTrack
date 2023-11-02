@@ -1,10 +1,12 @@
 ﻿using AutoMapper;
 using CuentasPorPagar.Models;
 using CuentasPorPagar.Servicios;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CuentasPorPagar.Controllers
 {
+    [Authorize]
     public class ProveedoresController : Controller
     {
 
@@ -17,10 +19,10 @@ namespace CuentasPorPagar.Controllers
 			this.servicioUsuarios = servicioUsuarios;
 		}
 
-
+	
 		public async Task<IActionResult> Index()
         {
-            var usuarioId = servicioUsuarios.ObtenerIdUsuario();
+            var usuarioId = servicioUsuarios.ObtenerUsuarioId();
 			var proveedores = await repositorioProveedor.Obtener(usuarioId);
 
             return View(proveedores);
@@ -41,7 +43,16 @@ namespace CuentasPorPagar.Controllers
 				return View(proveedor);
 			}
 
-			proveedor.UsuarioId = servicioUsuarios.ObtenerIdUsuario();
+			proveedor.UsuarioId = servicioUsuarios.ObtenerUsuarioId();
+
+			var yaExisteProveedor = await repositorioProveedor.Existe(proveedor.RFC,proveedor.UsuarioId);
+
+			if (yaExisteProveedor)
+			{
+				ModelState.AddModelError(nameof(proveedor.RFC), $"RFC ya existe");
+				return View(proveedor);
+			}
+
 
 			await repositorioProveedor.Crear(proveedor);
 
@@ -51,7 +62,7 @@ namespace CuentasPorPagar.Controllers
 		[HttpGet]
 		public async Task<IActionResult> Actualizar(int id)
 		{
-			var usuarioId = servicioUsuarios.ObtenerIdUsuario();
+			var usuarioId = servicioUsuarios.ObtenerUsuarioId();
 			var proveedor = await repositorioProveedor.ObtenerPorId(id,usuarioId);
 
 
@@ -68,7 +79,7 @@ namespace CuentasPorPagar.Controllers
 		[HttpPost]
 		public async Task<IActionResult> Actualizar(Proveedor proveedor)
 		{
-			var usuarioId = servicioUsuarios.ObtenerIdUsuario();
+			var usuarioId = servicioUsuarios.ObtenerUsuarioId();
 			var proveedorr = repositorioProveedor.ObtenerPorId(proveedor.Id,usuarioId);
 
 			if (proveedorr is null)
@@ -86,7 +97,7 @@ namespace CuentasPorPagar.Controllers
 		[HttpPost]
 		public async Task<IActionResult> Eliminar(int id)
 		{
-			var usuarioId = servicioUsuarios.ObtenerIdUsuario();
+			var usuarioId = servicioUsuarios.ObtenerUsuarioId();
 			var proveedor = repositorioProveedor.ObtenerPorId(id,usuarioId);
 
 			if (proveedor is null)
@@ -100,6 +111,22 @@ namespace CuentasPorPagar.Controllers
             return RedirectToAction("Index");
 
         }
+
+
+		//[HttpGet]
+		//public async Task<IActionResult> VerificarExisteProveedor(string rfc)
+		//{
+		//	var usuarioId = servicioUsuarios.ObtenerUsuarioId();
+		//	var yaExisteProveedor = await repositorioProveedor.Existe(rfc, usuarioId);
+
+		//	if (yaExisteProveedor)
+		//	{
+		//		return Json($"RFC");
+		//	}
+
+		//	return Json(true);
+
+		//}
 
 
 	}

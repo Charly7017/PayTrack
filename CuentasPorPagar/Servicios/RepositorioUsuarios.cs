@@ -22,12 +22,20 @@ namespace CuentasPorPagar.Servicios
         public async Task<int> CrearUsuario(Usuario usuario)
         {
             using var connection = new SqlConnection(connectionString);
-            var usuarioId = await connection.QuerySingleAsync<int>("Usuario_Insertar", usuario, commandType: CommandType.StoredProcedure);
 
-            await connection.ExecuteAsync("CrearDatosUsuarioNuevo", new { usuarioId },
-                commandType: CommandType.StoredProcedure);
+            var parameter = new
+            {
+                usuario.Email,
+                usuario.EmailNormalizado,
+                usuario.PasswordHash
+            };
 
-            return usuarioId;
+            var id = await connection.QuerySingleAsync<int>("Usuario_Insertar", parameter, commandType: CommandType.StoredProcedure);
+
+            //await connection.ExecuteAsync("CrearDatosUsuarioNuevo", new { usuarioId },
+            //    commandType: CommandType.StoredProcedure);
+
+            return id;
         }
 
         public async Task<Usuario> BuscarUsuarioPorEmail(string emailNormalizado)

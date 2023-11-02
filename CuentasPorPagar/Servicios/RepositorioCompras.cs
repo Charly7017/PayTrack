@@ -14,11 +14,11 @@ namespace CuentasPorPagar.Servicios
         Task<bool> Existe(string nombre, int usuarioId);
         Task<IEnumerable<Compra>> Obtener(int usuarioId);
     }
-    public class RepositoriosCompras:IRepositorioCompras
+    public class RepositorioCompras:IRepositorioCompras
     {
         private readonly string connectionString;
 
-        public RepositoriosCompras(IConfiguration configuration)
+        public RepositorioCompras(IConfiguration configuration)
         {
             connectionString = configuration.GetConnectionString("DefaultConnection");
         }
@@ -54,6 +54,8 @@ namespace CuentasPorPagar.Servicios
 
             return await connection.QueryAsync<Compra>("Compra_Obtener", new { usuarioId }, commandType: CommandType.StoredProcedure);
         }
+
+        //rama primaris
 
         public async Task<Compra> ObtenerPorId(int id, int usuarioId)
         {

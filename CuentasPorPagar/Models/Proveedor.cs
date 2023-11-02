@@ -1,4 +1,5 @@
 ﻿using CuentasPorPagar.Models;
+using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 
 namespace CuentasPorPagar.Models
@@ -23,8 +24,18 @@ namespace CuentasPorPagar.Models
 		[Display(Name = "Teléfono")]
 		[Required(ErrorMessage = "El número de teléfono del proveedor es obligatorio.")]
 		[Phone(ErrorMessage = "El número de teléfono no es válido.")]
+
 		public string Telefono { get; set; }
+
+        [Display(Name = "RFC")]
+        [Required(ErrorMessage = "El RFC es obligatorio.")]
+        [StringLength(13, MinimumLength = 13,ErrorMessage ="RFC invalido")]
+
+        //[Remote(action: "VerificarExisteTipoTarea", controller: "TiposTareas")]
+        public string RFC { get; set; }
         public int UsuarioId { get; set; }
+
+
     }
 
 

@@ -33,6 +33,7 @@ namespace CuentasPorPagar.Servicios
 				proveedor.Email,
 				proveedor.Direccion,
 				proveedor.Telefono,
+				proveedor.RFC,
 				proveedor.UsuarioId
 			};
 
@@ -72,7 +73,8 @@ namespace CuentasPorPagar.Servicios
 				proveedor.Nombre,
 				proveedor.Email,
 				proveedor.Direccion,
-				proveedor.Telefono
+				proveedor.Telefono,
+				proveedor.RFC
 			};
 
 			await connection.ExecuteAsync("Proveedor_Actualizar", parameters, commandType: CommandType.StoredProcedure);
@@ -86,13 +88,13 @@ namespace CuentasPorPagar.Servicios
 			await connection.ExecuteAsync("Proveedor_Eliminar", new {id}, commandType: CommandType.StoredProcedure);
 		}
 
-		public async Task<bool> Existe(string nombre, int usuarioId)
+		public async Task<bool> Existe(string rfc, int usuarioId)
 		{
 			using var connection = new SqlConnection(connectionString);
 
 			var parameters = new
 			{
-				nombre,
+				rfc,
 				usuarioId
 			};
 

@@ -8,6 +8,7 @@ namespace CuentasPorPagar.Servicios
         public AutoMapperProfiles()
         {
             CreateMap<Compra, CompraCreacionViewModel>();
+            CreateMap<ControlCalidad, ControlCalidadCreacionViewModel>();
         }
     }
 }
