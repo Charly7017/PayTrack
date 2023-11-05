@@ -19,14 +19,8 @@ namespace CuentasPorPagar.Models
         [DataType(DataType.Date)]
         public DateTime FechaCompra { get; set; } = DateTime.Today;
 
-        [Required(ErrorMessage = "La fecha de vencimiento es obligatoria.")]
-        [Display(Name = "Fecha de Vencimiento")]
-        [DataType(DataType.Date)]
-        public DateTime FechaVencimiento { get; set; }  = DateTime.Today;
-
         [Required(ErrorMessage = "El total es obligatorio.")]
         [Display(Name = "Total")]
-        //[Range(0.0, Double.MaxValue, ErrorMessage = "El total debe ser un valor positivo.")]
         [DataType(DataType.Currency)]
         [Column(TypeName = "decimal(10,6)")]
         public decimal Total { get; set; }

@@ -33,7 +33,6 @@ namespace CuentasPorPagar.Servicios
                 compra.ProveedorId,
                 compra.Descripcion,
                 compra.FechaCompra,
-                compra.FechaVencimiento,
                 compra.Total,
                 compra.TipoCompra,
                 compra.UsuarioId,
@@ -80,7 +79,6 @@ namespace CuentasPorPagar.Servicios
                 compra.ProveedorId,
                 compra.Descripcion,
                 compra.FechaCompra,
-                compra.FechaVencimiento,
                 compra.Total,
                 compra.TipoCompra
             };

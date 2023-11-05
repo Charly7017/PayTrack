@@ -14,7 +14,10 @@ namespace CuentasPorPagar.Models
         [Required(ErrorMessage = "El estado de la compra es obligatorio.")]
 		[Display(Name = "Estado de la compra")]
 		public string Estado { get; set; }
-		public int UsuarioId { get; set; }
+		[Required(ErrorMessage ="La descripcion es obligatoria")]
+        [Display(Name = "Descripcion de la compra")]
+        public string Descripcion { get; set; }
+        public int UsuarioId { get; set; }
         public string Nombre { get; set; }
     }
 }

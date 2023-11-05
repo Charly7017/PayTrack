@@ -23,8 +23,6 @@ namespace CuentasPorPagar.Servicios
 			connectionString = configuration.GetConnectionString("DefaultConnection");
 		}
 
-
-
 		public async Task Crear(ControlCalidad controlCalidad)
 		{
 			using var connection = new SqlConnection(connectionString);
@@ -35,6 +33,7 @@ namespace CuentasPorPagar.Servicios
 				controlCalidad.Fecha,
 				controlCalidad.Estado,
 				controlCalidad.UsuarioId,
+                controlCalidad.Descripcion
 			};
 
 			var id = await connection.QuerySingleAsync<int>("ControlCalidad_Insertar", parameters, commandType: CommandType.StoredProcedure);
@@ -79,6 +78,7 @@ namespace CuentasPorPagar.Servicios
                 controlCalidad.CompraId,
                 controlCalidad.Fecha,
                 controlCalidad.Estado,
+                controlCalidad.Descripcion
 
             };
 
