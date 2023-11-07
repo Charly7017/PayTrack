@@ -21,8 +21,6 @@ namespace CuentasPorPagar.Models
 
         [Required(ErrorMessage = "El total es obligatorio.")]
         [Display(Name = "Total")]
-        [DataType(DataType.Currency)]
-        [Column(TypeName = "decimal(10,6)")]
         public decimal Total { get; set; }
 
         [Required(ErrorMessage = "El tipo de compra es obligatorio.")]

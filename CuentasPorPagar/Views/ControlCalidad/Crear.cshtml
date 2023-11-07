@@ -13,34 +13,55 @@
 
 
 <form asp-controller="ControlCalidad" asp-action="Crear">
-
-    <div class="mb-3">
-        <label class="form-label" asp-for="CompraId"></label>
-        <select class="form-control" asp-for="CompraId" asp-items="@Model.Compras"></select>
-        <span asp-validation-for="CompraId" class="text-danger"></span>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="mb-3">
+                <label class="form-label" asp-for="CompraId"></label>
+                <select class="form-control" asp-for="CompraId" asp-items="@Model.Compras"></select>
+                <span asp-validation-for="CompraId" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="mb-3">
+                <label class="form-label" asp-for="Fecha"></label>
+                <input class="form-control" asp-for="Fecha" />
+                <span asp-validation-for="Fecha" class="text-danger"></span>
+            </div>
+        </div>
     </div>
 
-    <div class="mb-3">
-        <label class="form-label" asp-for="Fecha"></label>
-        <input class="form-control" asp-for="Fecha"/>
-        <span asp-validation-for="Fecha" class="text-danger"></span>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="mb-3">
+                <label class="form-label" asp-for="Estado"></label>
+                <select class="form-control" asp-for="Estado" asp-items="@Model.Estados"></select>
+                <span asp-validation-for="Estado" class="text-danger"></span>
+            </div>
+        </div>
     </div>
 
-    <div class="mb-3">
-        <label class="form-label" asp-for="Estado"></label>
-        <select class="form-control" asp-for="Estado" asp-items="@Model.Estados"></select>
-        <span asp-validation-for="Estado" class="text-danger"></span>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="mb-3">
+                <label class="form-label" asp-for="Descripcion"></label>
+                <textarea rows="4" cols="20" asp-for="Descripcion" class="form-control"></textarea>
+                <span asp-validation-for="Descripcion" class="text-danger"></span>
+            </div>
+        </div>
     </div>
 
-    <div class="mb-3">
-        <label class="form-label" asp-for="Descripcion"></label>
-        <textarea rows="4" cols="50" asp-for="Descripcion" class="form-control"></textarea>
-        <span asp-validation-for="Descripcion" class="text-danger"></span>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="mb-3">
+                <!-- Use the d-flex class to create a flexbox container -->
+                <div class="d-flex">
+                    <!-- Use the me-2 class to add margin to the right of the 'Enviar' button -->
+                    <button type="submit" class="btn btn-primary me-2">Enviar</button>
+                    <a class="btn btn-secondary" asp-action="Index">Cancelar</a>
+                </div>
+            </div>
+        </div>
     </div>
-
-
-    <button type="submit" class="btn btn-primary">Enviar</button>
-    <a class="btn btn-secondary" asp-action="Index">Cancelar</a>
 
 </form>
 
