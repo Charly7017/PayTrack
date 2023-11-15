@@ -9,6 +9,7 @@ namespace CuentasPorPagar.Servicios
         {
             CreateMap<Compra, CompraCreacionViewModel>();
             CreateMap<ControlCalidad, ControlCalidadCreacionViewModel>();
+            CreateMap<Gasto, GastoCreacionViewModel>();
         }
     }
 }

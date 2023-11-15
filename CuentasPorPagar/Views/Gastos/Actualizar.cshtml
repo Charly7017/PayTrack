@@ -1,0 +1,53 @@
+﻿@model GastoCreacionViewModel
+
+@{
+    ViewData["Title"] = "Actualizar";
+}
+
+<h1>Actualizar Gasto</h1>
+
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+
+
+<form asp-action="Crear" asp-controller="Gastos">
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <label class="form-label" asp-for="Descripcion"></label>
+            <textarea rows="4" cols="15" asp-for="Descripcion" class="form-control"></textarea>
+            <span asp-validation-for="Descripcion" class="text-danger"></span>
+        </div>
+        <div class="col-md-6 mb-3">
+            <label class="form-label" asp-for="Fecha"></label>
+            <input class="form-control" asp-for="Fecha" />
+            <span asp-validation-for="Fecha" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <label class="form-label" asp-for="MetodoPagoId"></label>
+            <select class="form-control" asp-for="MetodoPagoId" asp-items="@Model.MetodosPago"></select>
+            <span asp-validation-for="MetodoPagoId" class="text-danger"></span>
+        </div>
+        <div class="col-md-6 mb-3">
+            <label class="form-label" asp-for="ProveedorId"></label>
+            <select class="form-control" asp-for="ProveedorId" asp-items="@Model.Proveedores"></select>
+            <span asp-validation-for="ProveedorId" class="text-danger"></span>
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary me-2">Enviar</button>
+    <a class="btn btn-secondary" asp-action="Index">Cancelar</a>
+
+
+
+</form>
+
+
+
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}
+

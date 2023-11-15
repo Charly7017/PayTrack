@@ -7,7 +7,11 @@ namespace CuentasPorPagar.Servicios
 {
     public interface IRepositorioGastos
     {
-
+        Task Actualizar(Gasto gasto);
+        Task Crear(Gasto gasto);
+        Task Eliminar(int id);
+        Task<IEnumerable<Gasto>> Obtener(int usuarioId);
+        Task<Gasto> ObtenerPorId(int id, int usuarioId);
     }
     public class RepositorioGastos:IRepositorioGastos
     {
@@ -87,7 +91,7 @@ namespace CuentasPorPagar.Servicios
         {
             using var connection = new SqlConnection(connectionString);
 
-            await connection.ExecuteAsync("Gastp_Eliminar", new { id }, commandType: CommandType.StoredProcedure);
+            await connection.ExecuteAsync("Gasto_Eliminar", new { id }, commandType: CommandType.StoredProcedure);
         }
 
 

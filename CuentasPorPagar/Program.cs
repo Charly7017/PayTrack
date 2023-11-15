@@ -21,8 +21,10 @@ builder.Services.AddControllersWithViews(opciones =>
 builder.Services.AddTransient<IRepositorioControlCalidad,RepositorioControlCalidad>();
 builder.Services.AddTransient<IRepositorioProveedor,RepositorioProveedor>();
 builder.Services.AddTransient<IRepositorioCompras, RepositorioCompras>();
+builder.Services.AddTransient<IRepositorioGastos, RepositorioGastos>();
 builder.Services.AddTransient<IServicioUsuarios, ServicioUsuarios>();
 builder.Services.AddTransient<IRepositorioUsuarios,RepositorioUsuarios>();
+builder.Services.AddTransient<IRepositorioMetodoPago,RepositorioMetodoPago>();
 builder.Services.AddTransient<IUserStore<Usuario>, UsuarioStore>();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddTransient<SignInManager<Usuario>>();

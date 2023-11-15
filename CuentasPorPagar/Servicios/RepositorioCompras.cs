@@ -54,7 +54,7 @@ namespace CuentasPorPagar.Servicios
             return await connection.QueryAsync<Compra>("Compra_Obtener", new { usuarioId }, commandType: CommandType.StoredProcedure);
         }
 
-        //rama primaris
+        
 
         public async Task<Compra> ObtenerPorId(int id, int usuarioId)
         {

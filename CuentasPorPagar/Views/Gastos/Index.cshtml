@@ -1,0 +1,80 @@
+﻿@model IEnumerable<Gasto>
+
+@{
+    ViewData["Title"] = "Gastos";
+}
+
+<h1>Lista de gastos</h1>
+
+
+<a class="btn btn-primary mb-5" asp-action="Crear" asp-controller="Gastos">Agregar Gasto</a>
+
+
+<table class="table" id="example">
+    <thead>
+        <tr>
+            <th>Acciones</th>
+            <th>Concepto</th>
+            <th>Monto</th>
+            <th>Metodo de Pago</th>
+            <th>Fecha</th>
+            <th>Empresa</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var gasto in Model)
+        {
+            <tr>
+                <td>
+                    <a class="btn btn-primary" asp-route-Id="@gasto.Id" asp-action="Actualizar">Editar</a>
+                    <a class="btn btn-danger" data-id="@gasto.Id" data-action="Eliminar">Borrar</a>
+                </td>
+                <td>@gasto.Concepto</td>
+                <td>@gasto.Monto</td>
+                <td>@gasto.MetodoPago</td>
+                <td>@gasto.Fecha</td>
+                <td>@gasto.Empresa</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts{
+
+    <script>
+
+        $("document").ready(function () {
+            new DataTable('#example', {
+                rowReorder: true
+            });
+
+
+            $("a[data-action='Eliminar']").click(function () {
+                let id = $(this).data("id");
+                let row = $(this).closest("tr"); // Obtener la fila actual
+
+                if (confirm("¿Estás seguro de que deseas eliminar este registro?")) {
+                    $.ajax({
+                        type: "POST",
+                        url: "/Gastos/Eliminar/" + id,
+                        success: function () {
+                            // Eliminar la fila de la tabla
+                            row.remove();
+                        },
+                        error: function () {
+                            alert("Error al eliminar el elemento.");
+                        }
+                    })
+                }
+            })
+        })
+
+
+
+
+    </script>
+
+
+}
+
+
