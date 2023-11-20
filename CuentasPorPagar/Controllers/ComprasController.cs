@@ -26,17 +26,27 @@ namespace CuentasPorPagar.Controllers
 
         public async Task<IActionResult> Index()
         {
+            
             var usuarioId = servicioUsuarios.ObtenerUsuarioId();
             var compras = await  repositorioCompras.Obtener(usuarioId);
+            var montoTotal = await repositorioCompras.ObtenerMontoTotal();
 
-            return View(compras);
+            //ViewBag.MontoTotal = montoTotal;
+
+            var modelo = new CompraCreacionViewModel
+            {
+                Compras=compras,
+                MontoTotal=montoTotal
+            };
+
+
+            return View(modelo);
         }
 
         [HttpGet]
         public async Task<IActionResult> Crear()
         {
             var usuarioId = servicioUsuarios.ObtenerUsuarioId();
-
             var modelo = new CompraCreacionViewModel();
 
             modelo.Proveedores = await ObtenerProveedores(usuarioId);

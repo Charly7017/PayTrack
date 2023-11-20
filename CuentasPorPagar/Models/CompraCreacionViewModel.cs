@@ -10,6 +10,8 @@ namespace CuentasPorPagar.Models
             new SelectListItem { Text = "Credito", Value = "Credito" },
             new SelectListItem { Text = "Contado", Value = "Contado" }
         };
+        public IEnumerable<CompraCreacionViewModel> Compras { get; set; }
+
 
     }
 }

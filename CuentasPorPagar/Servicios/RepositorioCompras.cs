@@ -12,7 +12,8 @@ namespace CuentasPorPagar.Servicios
         Task Eliminar(int id);
         Task<Compra> ObtenerPorId(int id, int usuarioId);
         Task<bool> Existe(string nombre, int usuarioId);
-        Task<IEnumerable<Compra>> Obtener(int usuarioId);
+        Task<IEnumerable<CompraCreacionViewModel>> Obtener(int usuarioId);
+        Task<decimal> ObtenerMontoTotal();
     }
     public class RepositorioCompras:IRepositorioCompras
     {
@@ -36,6 +37,7 @@ namespace CuentasPorPagar.Servicios
                 compra.Total,
                 compra.TipoCompra,
                 compra.UsuarioId,
+                compra.MontoDevolucion
             };
 
 
@@ -47,11 +49,11 @@ namespace CuentasPorPagar.Servicios
 
         }
 
-        public async Task<IEnumerable<Compra>> Obtener(int usuarioId)
+        public async Task<IEnumerable<CompraCreacionViewModel>> Obtener(int usuarioId)
         {
             using var connection = new SqlConnection(connectionString);
 
-            return await connection.QueryAsync<Compra>("Compra_Obtener", new { usuarioId }, commandType: CommandType.StoredProcedure);
+            return await connection.QueryAsync<CompraCreacionViewModel>("Compra_Obtener", new { usuarioId }, commandType: CommandType.StoredProcedure);
         }
 
         
@@ -80,7 +82,8 @@ namespace CuentasPorPagar.Servicios
                 compra.Descripcion,
                 compra.FechaCompra,
                 compra.Total,
-                compra.TipoCompra
+                compra.TipoCompra,
+                compra.MontoDevolucion
             };
 
 
@@ -110,6 +113,15 @@ namespace CuentasPorPagar.Servicios
                 parameters, commandType: CommandType.StoredProcedure);
 
             return existe == 1;
+        }
+
+
+        public async Task<decimal> ObtenerMontoTotal()
+        {
+            using var connection = new SqlConnection(connectionString);
+
+            return await connection.ExecuteScalarAsync<decimal>("Compras_ObtenerMontoTotal", commandType: CommandType.StoredProcedure);
+
         }
 
 

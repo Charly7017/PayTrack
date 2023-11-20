@@ -14,12 +14,12 @@
 
 <form asp-controller="ControlCalidad" asp-action="Crear">
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-6 mb-3">
                 <label class="form-label" asp-for="CompraId"></label>
                 <select class="form-control" asp-for="CompraId" asp-items="@Model.Compras"></select>
                 <span asp-validation-for="CompraId" class="text-danger"></span>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 mb-3">
                 <label class="form-label" asp-for="Fecha"></label>
                 <input class="form-control" asp-for="Fecha" />
                 <span asp-validation-for="Fecha" class="text-danger"></span>
@@ -27,7 +27,7 @@
     </div>
 
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-6 mb-3">
                 <label class="form-label" asp-for="Estado"></label>
                 <select class="form-control" asp-for="Estado" asp-items="@Model.Estados"></select>
                 <span asp-validation-for="Estado" class="text-danger"></span>
@@ -35,7 +35,7 @@
     </div>
 
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12 mb-3">
             <div class="mb-3">
                 <label class="form-label" asp-for="Descripcion"></label>
                 <textarea rows="4" cols="20" asp-for="Descripcion" class="form-control"></textarea>

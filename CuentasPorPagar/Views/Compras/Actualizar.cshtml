@@ -4,31 +4,34 @@
     ViewData["Title"] = "Actualizar compra";
 }
 
+
+<h1>Actualizar compra</h1>
+
 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
 
 <form asp-controller="Compras" asp-action="Actualizar">
 
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-6 mb-3">
                 <label class="form-label" asp-for="ProveedorId"></label>
                 <select class="form-control" asp-for="ProveedorId" asp-items="@Model.Proveedores"></select>
                 <span asp-validation-for="ProveedorId" class="text-danger"></span>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 mb-3">
                 <label class="form-label" asp-for="Descripcion"></label>
-                <textarea class="form-control" asp-for="Descripcion" rows="4" cols="50"></textarea>
+                <textarea class="form-control" asp-for="Descripcion"></textarea>
                 <span asp-validation-for="Descripcion" class="text-danger"></span>
         </div>
     </div>
 
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-6 mb-3">
                 <label class="form-label" asp-for="FechaCompra"></label>
                 <input class="form-control" asp-for="FechaCompra" />
                 <span asp-validation-for="FechaCompra" class="text-danger"></span>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 mb-3">
                 <label class="form-label" asp-for="Total"></label>
                 <input class="form-control" asp-for="Total" />
                 <span asp-validation-for="Total" class="text-danger"></span>
@@ -36,10 +39,15 @@
     </div>
 
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-6 mb-3">
                 <label class="form-label" asp-for="TipoCompra"></label>
                 <select class="form-control" asp-for="TipoCompra" asp-items="Model.TiposCompras"></select>
                 <span asp-validation-for="TipoCompra" class="text-danger"></span>
+        </div>
+        <div class="col-md-6 mb-3">
+            <label class="form-label" asp-for="MontoDevolucion"></label>
+            <input class="form-control" asp-for="MontoDevolucion" />
+            <span asp-validation-for="MontoDevolucion" class="text-danger"></span>
         </div>
     </div>
 

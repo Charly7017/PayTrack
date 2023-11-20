@@ -26,7 +26,11 @@ namespace CuentasPorPagar.Models
         [Required(ErrorMessage = "El tipo de compra es obligatorio.")]
         [Display(Name = "Tipo de Compra")]
         public string TipoCompra { get; set; }
+
+        [Display(Name = "Digitar en caso de devolucion")]
+        public decimal MontoDevolucion { get; set; }
         public int UsuarioId { get; set; }
         public string Proveedor { get; set; }
+        public decimal MontoTotal { get; set; }
     }
 }

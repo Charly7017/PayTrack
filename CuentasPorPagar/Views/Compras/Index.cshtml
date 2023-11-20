@@ -1,11 +1,14 @@
-﻿@model IEnumerable<Compra>
+﻿@model CompraCreacionViewModel
 @{
     ViewData["Title"] = "Vista Compras";
 }
 
 <h1>Lista de compras</h1>
 
-<a asp-action="Crear" asp-controller="Compras" class="btn btn-primary mb-5">Agregar compra</a>
+<a asp-action="Crear" asp-controller="Compras" class="btn btn-primary mb-4">Agregar compra</a>
+
+
+<p class="mb-4 h3">Total de ganancias en compras: @Model.MontoTotal</p>
 
 
 
@@ -21,7 +24,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var compra in Model)
+        @foreach (var compra in Model.Compras)
         {
             <tr>
                 <td>
