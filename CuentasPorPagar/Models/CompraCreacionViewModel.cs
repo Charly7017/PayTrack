@@ -11,7 +11,7 @@ namespace CuentasPorPagar.Models
             new SelectListItem { Text = "Contado", Value = "Contado" }
         };
         public IEnumerable<CompraCreacionViewModel> Compras { get; set; }
-
+        public decimal MontoTotal { get; set; }
 
     }
 }

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Xul2zlcyfpquhjF7acL71rhNzlRJnOd0ZGOANll+dpg=",
+  "Hash": "kIYd+O8RaPvb4vwUk2Icx28EJSe7Ofz77KwUjKkeFvc=",
   "Source": "CuentasPorPagar",
   "BasePath": "_content/CuentasPorPagar",
   "Mode": "Default",
@@ -83,6 +83,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\Users\\Carlos Santamaria\\Documents\\Programacion\\C#\\ASP.NET_MVC\\CuentasPorPagar\\CuentasPorPagar\\wwwroot\\js\\ChartsCode.js",
+      "SourceId": "CuentasPorPagar",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Carlos Santamaria\\Documents\\Programacion\\C#\\ASP.NET_MVC\\CuentasPorPagar\\CuentasPorPagar\\wwwroot\\",
+      "BasePath": "_content/CuentasPorPagar",
+      "RelativePath": "js/ChartsCode.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\ChartsCode.js"
     },
     {
       "Identity": "C:\\Users\\Carlos Santamaria\\Documents\\Programacion\\C#\\ASP.NET_MVC\\CuentasPorPagar\\CuentasPorPagar\\wwwroot\\js\\site.js",

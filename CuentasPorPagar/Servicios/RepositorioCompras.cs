@@ -120,7 +120,7 @@ namespace CuentasPorPagar.Servicios
         {
             using var connection = new SqlConnection(connectionString);
 
-            return await connection.ExecuteScalarAsync<decimal>("Compras_ObtenerMontoTotal", commandType: CommandType.StoredProcedure);
+            return await connection.ExecuteScalarAsync<decimal>("Compra_ObtenerMontoTotal", commandType: CommandType.StoredProcedure);
 
         }
 

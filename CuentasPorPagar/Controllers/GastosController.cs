@@ -31,8 +31,16 @@ namespace CuentasPorPagar.Controllers
         {
             var usuarioId = servicioUsuarios.ObtenerUsuarioId();
             var gastos = await repositorioGastos.Obtener(usuarioId);
+            var montoTotal = await repositorioGastos.ObtenerMontoTotal();
 
-            return View(gastos);
+            var modelo = new GastoCreacionViewModel
+            {
+                Gastos= gastos,
+                MontoTotal= montoTotal,  
+            };
+
+
+            return View(modelo);
         }
 
         [HttpGet]

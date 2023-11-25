@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Gasto>
+﻿@model GastoCreacionViewModel
 
 @{
     ViewData["Title"] = "Gastos";
@@ -7,14 +7,16 @@
 <h1>Lista de gastos</h1>
 
 
-<a class="btn btn-primary mb-5" asp-action="Crear" asp-controller="Gastos">Agregar Gasto</a>
+<a class="btn btn-primary mb-4" asp-action="Crear" asp-controller="Gastos">Agregar Gasto</a>
+
+<p class="mb-4 h3">Total de gastos: @Model.MontoTotal</p>
 
 
 <table class="table" id="example">
     <thead>
         <tr>
             <th>Acciones</th>
-            <th>Concepto</th>
+            <th>Descripcion</th>
             <th>Monto</th>
             <th>Metodo de Pago</th>
             <th>Fecha</th>
@@ -22,7 +24,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var gasto in Model)
+        @foreach (var gasto in Model.Gastos)
         {
             <tr>
                 <td>

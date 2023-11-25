@@ -31,6 +31,6 @@ namespace CuentasPorPagar.Models
         public decimal MontoDevolucion { get; set; }
         public int UsuarioId { get; set; }
         public string Proveedor { get; set; }
-        public decimal MontoTotal { get; set; }
+        
     }
 }

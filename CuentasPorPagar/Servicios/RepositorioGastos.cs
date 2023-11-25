@@ -10,7 +10,8 @@ namespace CuentasPorPagar.Servicios
         Task Actualizar(Gasto gasto);
         Task Crear(Gasto gasto);
         Task Eliminar(int id);
-        Task<IEnumerable<Gasto>> Obtener(int usuarioId);
+        Task<IEnumerable<GastoCreacionViewModel>> Obtener(int usuarioId);
+        Task<decimal> ObtenerMontoTotal();
         Task<Gasto> ObtenerPorId(int id, int usuarioId);
     }
     public class RepositorioGastos:IRepositorioGastos
@@ -45,11 +46,11 @@ namespace CuentasPorPagar.Servicios
 
 
 
-        public async Task<IEnumerable<Gasto>> Obtener(int usuarioId)
+        public async Task<IEnumerable<GastoCreacionViewModel>> Obtener(int usuarioId)
         {
             using var connection = new SqlConnection(connectionString);
 
-            return await connection.QueryAsync<Gasto>("Gasto_Obtener", new { usuarioId }, commandType: CommandType.StoredProcedure);
+            return await connection.QueryAsync<GastoCreacionViewModel>("Gasto_Obtener", new { usuarioId }, commandType: CommandType.StoredProcedure);
         }
 
         public async Task<Gasto> ObtenerPorId(int id, int usuarioId)
@@ -95,6 +96,16 @@ namespace CuentasPorPagar.Servicios
         }
 
 
+
+        public async Task<decimal> ObtenerMontoTotal()
+        {
+            using var connection = new SqlConnection(connectionString);
+
+            return await connection.ExecuteScalarAsync<decimal>("Gasto_ObtenerMontoTotal", commandType: CommandType.StoredProcedure);
+
+
+
+        }
 
 
 

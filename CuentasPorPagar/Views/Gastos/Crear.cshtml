@@ -10,17 +10,27 @@
 
 <form asp-action="Crear" asp-controller="Gastos">
     <div class="row">
+        <div class="col mb-3">
+            <label class="form-label" asp-for="Descripcion"></label>
+            <textarea rows="4" cols="15" asp-for="Descripcion" class="form-control"></textarea>
+            <span asp-validation-for="Descripcion" class="text-danger"></span>
+        </div>
+       
+    </div>
+
+    <div class="row">
         <div class="col-md-6 mb-3">
-                <label class="form-label" asp-for="Descripcion"></label>
-                <textarea rows="4" cols="15" asp-for="Descripcion" class="form-control"></textarea>
-                <span asp-validation-for="Descripcion" class="text-danger"></span>
+            <label class="form-label" asp-for="Monto"></label>
+            <input class="form-control" asp-for="Monto" />
+            <span asp-validation-for="Monto" class="text-danger"></span>
         </div>
         <div class="col-md-6 mb-3">
-                <label class="form-label" asp-for="Fecha"></label>
-                <input class="form-control" asp-for="Fecha" />
-                <span asp-validation-for="Fecha" class="text-danger"></span>
+            <label class="form-label" asp-for="Fecha"></label>
+            <input class="form-control" asp-for="Fecha" />
+            <span asp-validation-for="Fecha" class="text-danger"></span>
         </div>
     </div>
+
 
     <div class="row">
         <div class="col-md-6 mb-3">

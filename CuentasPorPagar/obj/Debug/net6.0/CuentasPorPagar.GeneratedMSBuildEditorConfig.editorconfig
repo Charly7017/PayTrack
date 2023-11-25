@@ -40,6 +40,30 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udHJvbENhbGlkYWRcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Carlos Santamaria/Documents/Programacion/C\#/ASP.NET_MVC/CuentasPorPagar/CuentasPorPagar/Views/DashBoard/Gastos.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaEJvYXJkXEdhc3Rvcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Carlos Santamaria/Documents/Programacion/C\#/ASP.NET_MVC/CuentasPorPagar/CuentasPorPagar/Views/DashBoard/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaEJvYXJkXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Carlos Santamaria/Documents/Programacion/C\#/ASP.NET_MVC/CuentasPorPagar/CuentasPorPagar/Views/DashBoard/Ventas.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaEJvYXJkXFZlbnRhcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Carlos Santamaria/Documents/Programacion/C\#/ASP.NET_MVC/CuentasPorPagar/CuentasPorPagar/Views/DashBoard/_EstadisticasGastos.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaEJvYXJkXF9Fc3RhZGlzdGljYXNHYXN0b3MuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Carlos Santamaria/Documents/Programacion/C\#/ASP.NET_MVC/CuentasPorPagar/CuentasPorPagar/Views/DashBoard/_Links.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaEJvYXJkXF9MaW5rcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Carlos Santamaria/Documents/Programacion/C\#/ASP.NET_MVC/CuentasPorPagar/CuentasPorPagar/Views/DashBoard/_Submenu.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaEJvYXJkXF9TdWJtZW51LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Carlos Santamaria/Documents/Programacion/C\#/ASP.NET_MVC/CuentasPorPagar/CuentasPorPagar/Views/Gastos/Actualizar.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR2FzdG9zXEFjdHVhbGl6YXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -98,6 +122,14 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/Carlos Santamaria/Documents/Programacion/C\#/ASP.NET_MVC/CuentasPorPagar/CuentasPorPagar/Views/Usuarios/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb3NcX0xheW91dC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Carlos Santamaria/Documents/Programacion/C\#/ASP.NET_MVC/CuentasPorPagar/CuentasPorPagar/Views/Ventas/Actualizar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmVudGFzXEFjdHVhbGl6YXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Carlos Santamaria/Documents/Programacion/C\#/ASP.NET_MVC/CuentasPorPagar/CuentasPorPagar/Views/Ventas/Crear.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmVudGFzXENyZWFyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Carlos Santamaria/Documents/Programacion/C\#/ASP.NET_MVC/CuentasPorPagar/CuentasPorPagar/Views/Ventas/Index.cshtml]

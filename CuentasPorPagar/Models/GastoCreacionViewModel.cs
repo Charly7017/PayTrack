@@ -6,5 +6,7 @@ namespace CuentasPorPagar.Models
     {
         public IEnumerable<SelectListItem> Proveedores { get; set; }
         public IEnumerable<SelectListItem> MetodosPago { get; set; }
+        public IEnumerable<GastoCreacionViewModel> Gastos { get; set; }
+        public decimal MontoTotal { get; set; }
     }
 }

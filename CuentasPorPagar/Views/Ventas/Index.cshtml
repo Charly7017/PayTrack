@@ -1,6 +1,76 @@
-﻿
+﻿@model VentaCreacionViewModel
+
 @{
     ViewData["Title"] = "Ventas";
 }
 
-<h1>Vista de ventas</h1>
+<h1>Lista de ventas</h1>
+
+<a class="btn btn-primary mb-4" asp-action="Crear" asp-controller="Ventas">Agregar Venta</a>
+
+<p class="mb-4 h3">Total de ventas: @Model.MontoTotal</p>
+
+
+<table class="table" id="example">
+    <thead>
+        <tr>
+            <th>Acciones</th>
+            <th>Descripcion</th>
+            <th>Fecha</th>
+            <th>Monto</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var gasto in Model.Ventas)
+        {
+            <tr>
+                <td>
+                    <a class="btn btn-primary" asp-route-Id="@gasto.Id" asp-action="Actualizar">Editar</a>
+                    <a class="btn btn-danger" data-id="@gasto.Id" data-action="Eliminar">Borrar</a>
+                </td>
+                <td>@gasto.Descripcion</td>
+                <td>@gasto.Fecha</td>
+                <td>@gasto.Monto</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+@section Scripts{
+
+    <script>
+
+        $("document").ready(function () {
+            new DataTable('#example', {
+                rowReorder: true
+            });
+
+
+            $("a[data-action='Eliminar']").click(function () {
+                let id = $(this).data("id");
+                let row = $(this).closest("tr"); // Obtener la fila actual
+
+                if (confirm("¿Estás seguro de que deseas eliminar este registro?")) {
+                    $.ajax({
+                        type: "POST",
+                        url: "/Ventas/Eliminar/" + id,
+                        success: function () {
+                            // Eliminar la fila de la tabla
+                            row.remove();
+                        },
+                        error: function () {
+                            alert("Error al eliminar el elemento.");
+                        }
+                    })
+                }
+            })
+        })
+
+
+
+
+    </script>
+
+
+}

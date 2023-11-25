@@ -1,0 +1,46 @@
+﻿@model Venta
+
+@{
+
+}
+
+<h1 class="mb-5">Actualiza una venta</h1>
+
+
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+<form asp-controller="Ventas" asp-action="Actualizar">
+    <div class="row">
+        <div class="col-6 mb-3">
+            <label class="form-label" asp-for="Descripcion"></label>
+            <textarea class="form-control" asp-for="Descripcion"></textarea>
+            <span asp-validation-for="Descripcion" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-3 mb-3">
+            <label class="form-label" asp-for="Fecha"></label>
+            <input class="form-control" asp-for="Fecha" />
+            <span asp-validation-for="Fecha" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-3 mb-3">
+            <label class="form-label" asp-for="Monto"></label>
+            <input class="form-control" asp-for="Monto" />
+            <span asp-validation-for="Monto" class="text-danger"></span>
+        </div>
+    </div>
+
+
+    <button type="submit" class="btn btn-primary">Enviar</button>
+    <a class="btn btn-secondary" asp-action="Index">Cancelar</a>
+</form>
+
+
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

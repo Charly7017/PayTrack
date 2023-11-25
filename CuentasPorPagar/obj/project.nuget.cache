@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "FhhvLvNmmz/yz1Ly6gNjNamQqy+Jx7OjR0ZNHFdrBI96fmoyoMMvXgeTKovE8LYY2i+OeLsC+TZ8Guxu8yX4/Q==",
+  "dgSpecHash": "Rdi0JA8wds3gp0aDryDFY0laSAEbllSSjoPwClB65B1BBrJ6D6s5wNXf6FBmxRCa+QvP1Bxq0TInIY1XCwYpyg==",
   "success": true,
   "projectFilePath": "C:\\Users\\Carlos Santamaria\\Documents\\Programacion\\C#\\ASP.NET_MVC\\CuentasPorPagar\\CuentasPorPagar\\CuentasPorPagar.csproj",
   "expectedPackageFiles": [
@@ -8,6 +8,7 @@
     "C:\\Users\\Carlos Santamaria\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\11.0.0\\automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",
     "C:\\Users\\Carlos Santamaria\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\Carlos Santamaria\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
+    "C:\\Users\\Carlos Santamaria\\.nuget\\packages\\chart.js\\3.7.1\\chart.js.3.7.1.nupkg.sha512",
     "C:\\Users\\Carlos Santamaria\\.nuget\\packages\\dapper\\2.1.15\\dapper.2.1.15.nupkg.sha512",
     "C:\\Users\\Carlos Santamaria\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\Carlos Santamaria\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",

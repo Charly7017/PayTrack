@@ -82,7 +82,7 @@ namespace CuentasPorPagar.Controllers
 
             if (resultado.Succeeded)
             {
-                return RedirectToAction("Index", "Proveedores");
+                return RedirectToAction("Index", "DashBoard");
             }
             else
             {

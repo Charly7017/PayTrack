@@ -13,6 +13,10 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\Carlos Santamaria\\Documents\\Programacion\\C#\\ASP.NET_MVC\\CuentasPorPagar\\CuentasPorPagar\\wwwroot\\js\\ChartsCode.js",
+      "PackagePath": "staticwebassets\\js\\ChartsCode.js"
+    },
+    {
       "Id": "C:\\Users\\Carlos Santamaria\\Documents\\Programacion\\C#\\ASP.NET_MVC\\CuentasPorPagar\\CuentasPorPagar\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },

@@ -1,0 +1,15 @@
+﻿@model SubMenuDashboard
+
+<ul class="nav nav-pills nav-fill mb-3">
+
+    <l1 class="nav-item">
+        <a class="nav-link @(Model==SubMenuDashboard.Index ? "active":null)" asp-action="Index">Compras</a>
+    </l1>
+    <l1 class="nav-item">
+        <a class="nav-link @(Model==SubMenuDashboard.Gastos ? "active":null)" asp-action="Gastos">Gastos</a>
+    </l1>
+    <l1 class="nav-item">
+        <a class="nav-link @(Model==SubMenuDashboard.Ventas ? "active":null)" asp-action="Ventas">Ventas</a>
+    </l1>
+
+</ul>

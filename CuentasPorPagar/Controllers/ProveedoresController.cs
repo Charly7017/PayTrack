@@ -68,12 +68,13 @@ namespace CuentasPorPagar.Controllers
 
             if (proveedor is null)
             {
-                return RedirectToAction("Index");
+                return RedirectToAction("NoEncontrado", "Home");
+
             }
 
 
             return View(proveedor);
-
+			
 		}
 
 		[HttpPost]

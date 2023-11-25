@@ -18,6 +18,8 @@ builder.Services.AddControllersWithViews(opciones =>
     opciones.Filters.Add(new AuthorizeFilter(politicaUsuariosAutenticados));
 });
 
+builder.Services.AddTransient<IRepositorioDashboard,RepositorioDashboard>();
+builder.Services.AddTransient<IRepositorioVentas, RepositorioVentas>();
 builder.Services.AddTransient<IRepositorioControlCalidad,RepositorioControlCalidad>();
 builder.Services.AddTransient<IRepositorioProveedor,RepositorioProveedor>();
 builder.Services.AddTransient<IRepositorioCompras, RepositorioCompras>();

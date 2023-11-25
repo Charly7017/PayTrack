@@ -1,0 +1,4 @@
+--Query para traer las compras que se hicieron en cada año
+SELECT YEAR(FechaCompra) AS ComprasAño,COUNT(*) AS Total FROM Compras
+GROUP BY YEAR(FechaCompra)
+ORDER BY YEAR(FechaCompra) 
