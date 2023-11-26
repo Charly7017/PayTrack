@@ -1,6 +1,7 @@
 ﻿using CuentasPorPagar.Models;
 using CuentasPorPagar.Servicios;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace CuentasPorPagar.Controllers
 {
@@ -8,21 +9,35 @@ namespace CuentasPorPagar.Controllers
     {
 
         private readonly IRepositorioDashboard repositorioDashboard;
+        private readonly IServicioUsuarios servicioUsuarios;
 
-        public DashBoardController(IRepositorioDashboard repositorioDashboard)
+        public DashBoardController(IRepositorioDashboard repositorioDashboard, IServicioUsuarios servicioUsuarios)
         {
             this.repositorioDashboard = repositorioDashboard;
+            this.servicioUsuarios = servicioUsuarios;
         }
 
         public async Task<IActionResult> Index(int modelValue)
         {
+            //var usuarioId = servicioUsuarios.ObtenerUsuarioId();
             var comprasAnuales = await repositorioDashboard.ObtenerComprasAnuales();
-       
+            var comprasMensuales = await repositorioDashboard.ObtenerComprasMensuales();
+
+            //var comprasMensualesAgrupadas = ComprasAgrupadasPorMes(comprasMensuales);
+            //var comprasMensualesAgrupadas = comprasMensuales.GroupBy(p => p.Año);
+          
+
+
+            var comprasMensualesAgrupadas = comprasMensuales.GroupBy(p => p.Año);
+
+            
+
 
             var modelo = new DashBoardViewModel
             {
                 ComprasAnuales=comprasAnuales,
-                ModelValue= modelValue
+                ModelValue= modelValue,
+                Meses=await ObtenerMesesCompras()
             };
 
             return View(modelo);
@@ -30,20 +45,51 @@ namespace CuentasPorPagar.Controllers
 
  
       
-        public IActionResult Gastos()
+        public async Task<IActionResult> Gastos(int modelValue)
         {
-            return View();
+            var gastosAnuales=await repositorioDashboard.ObtenerGastosAnuales();
+
+            var modelo = new DashBoardViewModel
+            {
+                GastosAnuales = gastosAnuales,
+                ModelValue=modelValue
+            };
+
+
+            return View(modelo);
         }
 
 
-        public IActionResult Ventas()
+        public async Task<IActionResult> Ventas(int modelValue)
         {
-            return View();
+            var ventasAnuales = await repositorioDashboard.ObtenerVentasAnuales();
+
+            var modelo = new DashBoardViewModel
+            {
+                VentasAnuales = ventasAnuales,
+                ModelValue = modelValue
+            };
+
+
+            return View(modelo);
         }
 
 
+        //private async Task<IEnumerable<CompraMensualTotal>> ComprasAgrupadasPorMes(IEnumerable<CompraMensualTotal> comprasMensuales)
+        //{
+        //    return comprasMensuales.GroupBy(p=>p.Mes).Select(p=>);
+        //}
 
 
+
+        private async Task<IEnumerable<SelectListItem>> ObtenerMesesCompras()
+        {
+            var meses = await repositorioDashboard.ObtenerMeses();
+            
+
+
+            return meses.Select(p => new SelectListItem(p.Mes.ToString(), "10"));
+        }
 
 
     }

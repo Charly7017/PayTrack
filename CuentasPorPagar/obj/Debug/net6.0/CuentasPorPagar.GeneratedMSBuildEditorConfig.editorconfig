@@ -52,16 +52,32 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaEJvYXJkXFZlbnRhcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Carlos Santamaria/Documents/Programacion/C\#/ASP.NET_MVC/CuentasPorPagar/CuentasPorPagar/Views/DashBoard/_EstadisticasCompras.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaEJvYXJkXF9Fc3RhZGlzdGljYXNDb21wcmFzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Carlos Santamaria/Documents/Programacion/C\#/ASP.NET_MVC/CuentasPorPagar/CuentasPorPagar/Views/DashBoard/_EstadisticasGastos.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaEJvYXJkXF9Fc3RhZGlzdGljYXNHYXN0b3MuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Carlos Santamaria/Documents/Programacion/C\#/ASP.NET_MVC/CuentasPorPagar/CuentasPorPagar/Views/DashBoard/_EstadisticasVentas.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaEJvYXJkXF9Fc3RhZGlzdGljYXNWZW50YXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Carlos Santamaria/Documents/Programacion/C\#/ASP.NET_MVC/CuentasPorPagar/CuentasPorPagar/Views/DashBoard/_Links.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaEJvYXJkXF9MaW5rcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Carlos Santamaria/Documents/Programacion/C\#/ASP.NET_MVC/CuentasPorPagar/CuentasPorPagar/Views/DashBoard/_SelectMes.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaEJvYXJkXF9TZWxlY3RNZXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Carlos Santamaria/Documents/Programacion/C\#/ASP.NET_MVC/CuentasPorPagar/CuentasPorPagar/Views/DashBoard/_Submenu.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaEJvYXJkXF9TdWJtZW51LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Carlos Santamaria/Documents/Programacion/C\#/ASP.NET_MVC/CuentasPorPagar/CuentasPorPagar/Views/EstadosReporte/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXN0YWRvc1JlcG9ydGVcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Carlos Santamaria/Documents/Programacion/C\#/ASP.NET_MVC/CuentasPorPagar/CuentasPorPagar/Views/Gastos/Actualizar.cshtml]

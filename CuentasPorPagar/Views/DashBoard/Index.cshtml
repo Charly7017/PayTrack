@@ -8,7 +8,9 @@
 
 <partial name="_Links"/>
 
-<partial name="_EstadisticasGastos" model="@Model.ModelValue"/>
+
+
+<partial name="_EstadisticasCompras" model="@Model.ModelValue"/>
 
 
 @section Scripts {
@@ -16,11 +18,14 @@
     <script>
    
 
-
-        var barchartCanvas = document.querySelector("#barchart")
         var años = []
         var comprasAnuales = []
-        var color = "blue"
+
+        var comprasMensuales=[]
+
+        var comprasDiarias=[]
+
+        var color="blue"
 
         @if (Model.ComprasAnuales.Count() > 0)
         {
@@ -32,13 +37,17 @@
             }
         }
 
+        
+
+
+
+
+       
+
             console.log(años)
         console.log(comprasAnuales)
 
-
-
-
-        new Chart("myChart", {
+        new Chart("myChartAnual", {
             type: "bar",
             data: {
                 labels: años,
@@ -61,6 +70,78 @@
                 }
             }
         });
+
+
+        new Chart("myChartMensual", {
+            type: "bar",
+            data: {
+                labels: [
+                    "Enero",
+                    "Febrero",
+                    "Marzo",
+                    "Abril",
+                    "Mayo",
+                    "Junio",
+                    "Julio",
+                    "Agosto",
+                    "Septiembre",
+                    "Octubre",
+                    "Noviembre",
+                    "Diciembre"
+                ],
+                datasets: [{
+                    backgroundColor: color,
+                    data: [2]
+                }]
+            },
+            options: {
+                legend: { display: false },
+                responsive: true,
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true,
+                            stepSize: 1,
+                            precision: 0
+                        }
+                    }],
+                }
+            }
+        });
+
+
+
+        new Chart("myChartDiario", {
+            type: "bar",
+            data: {
+                labels: [1, 3, 4],
+                datasets: [{
+                    backgroundColor: color,
+                    data: [2,5,7]
+                }]
+            },
+            options: {
+                legend: { display: false },
+                responsive: true,
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true,
+                            stepSize: 1,
+                            precision: 0
+                        }
+                    }],
+                }
+            }
+        });
+
+
+
+
+
+
+
+
     </script>
 
 }

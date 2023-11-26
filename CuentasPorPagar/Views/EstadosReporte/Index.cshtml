@@ -1,0 +1,86 @@
+﻿@model IEnumerable<EstadoReporte>
+@{
+    ViewData["Title"] = "Estado reporte";
+    // int currentYear = DateTime.Now.Year;
+    // // Asegúrate de convertir el valor de la query string a un entero, si es necesario.
+    // string selectedYear = HttpContext.Request.Query["year"];
+}
+
+<h1>Enfoque en beneficios</h1>
+@* 
+@using (Html.BeginForm("Index", "EstadosReporte", FormMethod.Get))
+{
+    <p>
+        Seleccione el año:
+        <select name="year" onchange="this.form.submit()">
+            <option value="">--Seleccione un año--</option>
+            @for (var year = currentYear; year >= currentYear - 10; year--)
+            {
+                <option value="@year" @(selectedYear == year.ToString() ? "selected=\"selected\"" : "")>@year</option>
+            }
+        </select>
+    </p>
+} *@
+
+
+<table class="table" id="example">
+    <thead>
+        <tr>
+            <th>Fecha</th>
+            <th>Total Ventas</th>
+            <th>Total Compras</th>
+            <th>Utilidad</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Fecha.ToString("yyyy-MM-dd")</td>
+                <td>@item.TotalVentas.ToString("C")</td>
+                <td>@item.TotalCompras.ToString("C")</td>
+                <td>@item.Utilidad.ToString("C")</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts{
+
+    <script>
+
+        // $("document").ready(function () {
+        //     new DataTable('#example', {
+        //         rowReorder: true
+        //     });
+
+        //     console.log(2)
+
+        // }
+
+         $(document).ready(function () {
+            $('#example').DataTable({
+                rowReorder: true
+            });
+
+            console.log(2);
+
+            document.getElementById('yearSelect').onchange = function () {
+                document.getElementById('yearForm').submit();
+            };
+
+
+        });
+
+
+    </script>
+
+
+}
+
+
+
+
+
+
+

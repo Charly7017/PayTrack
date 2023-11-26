@@ -1,12 +1,64 @@
-﻿
+﻿@model DashBoardViewModel
+
+
 @{
     ViewData["Title"] = "Dashboard";
 }
 
 
-
-
 <partial name="_Submenu" model="SubMenuDashboard.Gastos"/>
 
+<partial name="_Links" />
 
-<partial name="_Select" />
+<partial name="_EstadisticasGastos" model="@Model.ModelValue" />
+
+
+@section Scripts {
+
+    <script>
+
+
+        var barchartCanvas = document.querySelector("#barchart")
+        var años = []
+        var gastosAnuales = []
+        var color = "blue"
+
+        @if (Model.GastosAnuales.Count() > 0)
+        {
+            foreach (var item in Model.GastosAnuales)
+            {
+                @:años.push("@item.GastosAño")
+                @:gastosAnuales.push("@item.Total")
+
+            }  
+        }
+
+        new Chart("myChart", {
+            type: "bar",
+            data: {
+                labels: años,
+                datasets: [{
+                    backgroundColor: color,
+                    data: gastosAnuales
+                }]
+            },
+            options: {
+                legend: { display: false },
+                responsive: true,
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true,
+                            stepSize: 1,
+                            precision: 0
+                        }
+                    }],
+                }
+            }
+        });
+    </script>
+
+}
+
+
+
