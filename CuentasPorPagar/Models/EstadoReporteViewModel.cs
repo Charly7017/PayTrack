@@ -1,8 +1,9 @@
 ﻿namespace CuentasPorPagar.Models
 {
-    public class EstadoReporteViewModel
+    public class EstadoReporteViewModel:EstadoReporte
     {
-        public List<EstadoReporte> GananciasDiarias { get; set; }
+        public IEnumerable<EstadoReporte> BeneficiosDiarios { get; set; }
+        public decimal TotalUtilidad { get; set; }
 
     }
 }

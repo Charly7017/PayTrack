@@ -6,5 +6,7 @@
         public decimal TotalVentas { get; set; }
         public decimal TotalCompras { get; set; }
         public decimal Utilidad { get; set; }
+
+
     }
 }

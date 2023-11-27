@@ -29,7 +29,7 @@
                     <a class="btn btn-danger" data-id="@gasto.Id" data-action="Eliminar">Borrar</a>
                 </td>
                 <td>@gasto.Descripcion</td>
-                <td>@gasto.Fecha</td>
+                <td>@gasto.Fecha.ToString("yyyy-MM-dd")</td>
                 <td>@gasto.Monto</td>
             </tr>
         }

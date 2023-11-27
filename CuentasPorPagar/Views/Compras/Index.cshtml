@@ -31,10 +31,10 @@
                 <td>
                     <a class="btn btn-primary" asp-route-Id="@compra.Id" asp-action="Actualizar">Editar</a>
                     <a class="btn btn-danger" data-id="@compra.Id" data-action="Eliminar">Borrar</a>
-                </td>
+                </td>   
                 <td>@compra.Proveedor</td>
                 <td>@compra.Descripcion</td>
-                <td>@compra.FechaCompra</td>
+                <td>@compra.FechaCompra.ToString("yyyy-MM-dd")</td>
                 <td>@compra.Total</td>
                 <td>@compra.TipoCompra</td>
                 <td>@compra.MontoDevolucion</td>

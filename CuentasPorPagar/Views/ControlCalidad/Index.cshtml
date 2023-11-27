@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ControlCalidad>
+﻿    @model IEnumerable<ControlCalidad>
 
 @{
     ViewData["Title"] = "Vista Control Calidad";
@@ -29,7 +29,7 @@
                     <a class="btn btn-danger" data-id="@controlCalidad.Id" data-action="Eliminar">Borrar</a>
                 </td>
                 <td>@controlCalidad.Nombre</td>
-                <td>@controlCalidad.Fecha</td>
+                <td>@controlCalidad.Fecha.ToString("yyyy-MM-dd")</td>
                 <td>@controlCalidad.Estado</td>
                 <td>@controlCalidad.Descripcion</td>
             </tr>

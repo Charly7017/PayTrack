@@ -1,4 +1,4 @@
-﻿@model IEnumerable<EstadoReporte>
+﻿@model EstadoReporteViewModel
 @{
     ViewData["Title"] = "Estado reporte";
     // int currentYear = DateTime.Now.Year;
@@ -7,6 +7,7 @@
 }
 
 <h1>Enfoque en beneficios</h1>
+<h3 class="mb-4">Total ganado en utilidad: @Model.TotalUtilidad</h3>
 @* 
 @using (Html.BeginForm("Index", "EstadosReporte", FormMethod.Get))
 {
@@ -33,7 +34,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
+        @foreach (var item in Model.BeneficiosDiarios)
         {
             <tr>
                 <td>@item.Fecha.ToString("yyyy-MM-dd")</td>
@@ -65,9 +66,9 @@
 
             console.log(2);
 
-            document.getElementById('yearSelect').onchange = function () {
-                document.getElementById('yearForm').submit();
-            };
+            // document.getElementById('yearSelect').onchange = function () {
+            //     document.getElementById('yearForm').submit();
+            // };
 
 
         });
