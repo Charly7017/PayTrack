@@ -1,0 +1,8 @@
+﻿@model IEnumerable<SelectListItem>
+
+<select class="form-control-sm">
+    @foreach (var años in Model)
+    {
+        <option value="@años.Value">@años.Text</option>
+    }
+</select>

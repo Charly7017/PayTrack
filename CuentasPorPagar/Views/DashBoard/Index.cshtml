@@ -3,13 +3,18 @@
     ViewData["Title"] = "Dashboard";
 }
 
-
 <partial name="_Submenu" model="SubMenuDashboard.Index"/>
+<partial name="_Links" />
 
-<partial name="_Links"/>
+<select class="form-control-sm">
+    @foreach (var años in Model.Años)
+    {
+        <option value="@años.Value">@años.Text</option>
+    }
+</select>
 
 
-
+@* <partial name="_SelectAño" model="Model.Años" /> *@
 <partial name="_EstadisticasCompras" model="@Model.ModelValue"/>
 
 
@@ -17,14 +22,11 @@
 
     <script>
    
-
+        var meses=[]
         var años = []
         var comprasAnuales = []
-
         var comprasMensuales=[]
-
         var comprasDiarias=[]
-
         var color="blue"
 
         @if (Model.ComprasAnuales.Count() > 0)
@@ -37,15 +39,19 @@
             }
         }
 
+        @if (Model.ComprasMensuales.Count()>0)
+        {
+            foreach (var item in Model.ComprasMensuales)
+            {
+                @:meses.push("@item.Mes")
+                @:comprasMensuales.push("@item.Total")
+            }
+        }
+
         
 
 
-
-
-       
-
-            console.log(años)
-        console.log(comprasAnuales)
+      
 
         new Chart("myChartAnual", {
             type: "bar",
@@ -75,23 +81,10 @@
         new Chart("myChartMensual", {
             type: "bar",
             data: {
-                labels: [
-                    "Enero",
-                    "Febrero",
-                    "Marzo",
-                    "Abril",
-                    "Mayo",
-                    "Junio",
-                    "Julio",
-                    "Agosto",
-                    "Septiembre",
-                    "Octubre",
-                    "Noviembre",
-                    "Diciembre"
-                ],
+                labels: meses,
                 datasets: [{
                     backgroundColor: color,
-                    data: [2]
+                    data: comprasMensuales
                 }]
             },
             options: {

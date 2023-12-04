@@ -10,8 +10,12 @@ namespace CuentasPorPagar.Servicios
         Task<IEnumerable<CompraAnualTotal>> ObtenerComprasAnuales();
         Task<IEnumerable<CompraMensualTotal>> ObtenerComprasMensuales();
         Task<IEnumerable<GastoAnualTotal>> ObtenerGastosAnuales();
-        Task<IEnumerable<CompraObtenerMes>> ObtenerMeses();
+        Task<IEnumerable<ObtenerAño>> ObtenerAñosCompra();
         Task<IEnumerable<VentaAnualTotal>> ObtenerVentasAnuales();
+        Task<IEnumerable<ObtenerAño>> ObtenerAñosVenta();
+        Task<IEnumerable<ObtenerAño>> ObtenerAñosGasto();
+        Task<IEnumerable<GastoMensualTotal>> ObtenerGastosMensuales();
+        Task<IEnumerable<VentaMensualTotal>> ObtenerVentasMensuales();
     }
     public class RepositorioDashboard:IRepositorioDashboard
     {
@@ -36,13 +40,22 @@ namespace CuentasPorPagar.Servicios
             return await connection.QueryAsync<CompraMensualTotal>("Compra_ObtenerComprasMensuales", commandType: CommandType.StoredProcedure);
         }
 
-
+        
         public async Task<IEnumerable<GastoAnualTotal>> ObtenerGastosAnuales()
         {
             using var connection = new SqlConnection(connectionString);
 
             return await connection.QueryAsync<GastoAnualTotal>("Gasto_ObtenerGastosAnuales", commandType: CommandType.StoredProcedure);
         }
+
+
+        public async Task<IEnumerable<GastoMensualTotal>> ObtenerGastosMensuales()
+        {
+            using var connection = new SqlConnection(connectionString);
+
+            return await connection.QueryAsync<GastoMensualTotal>("Gasto_ObtenerGastosMensuales",commandType:CommandType.StoredProcedure);
+        }
+
 
         public async Task<IEnumerable<VentaAnualTotal>> ObtenerVentasAnuales()
         {
@@ -51,13 +64,44 @@ namespace CuentasPorPagar.Servicios
             return await connection.QueryAsync<VentaAnualTotal>("Venta_ObtenerVentasAnuales", commandType: CommandType.StoredProcedure);
         }
 
-        public async Task<IEnumerable<CompraObtenerMes>> ObtenerMeses()
+
+
+        public async Task<IEnumerable<VentaMensualTotal>> ObtenerVentasMensuales()
         {
             using var connection = new SqlConnection(connectionString);
 
-            return await connection.QueryAsync<CompraObtenerMes>("Compra_ObtenerMeses", commandType: CommandType.StoredProcedure);
+            return await connection.QueryAsync<VentaMensualTotal>("Venta_ObtenerVentasMensuales", commandType: CommandType.StoredProcedure);
+        }
+
+
+
+
+        public async Task<IEnumerable<ObtenerAño>> ObtenerAñosCompra()
+        {
+            using var connection = new SqlConnection(connectionString);
+
+            return await connection.QueryAsync<ObtenerAño>("Compra_ObtenerAños", commandType: CommandType.StoredProcedure);
 
         }
+
+        public async Task<IEnumerable<ObtenerAño>> ObtenerAñosGasto()
+        {
+            using var connection = new SqlConnection(connectionString);
+
+            return await connection.QueryAsync<ObtenerAño>("Gasto_ObtenerAños", commandType: CommandType.StoredProcedure);
+
+        }
+
+        public async Task<IEnumerable<ObtenerAño>> ObtenerAñosVenta()
+        {
+            using var connection = new SqlConnection(connectionString);
+
+            return await connection.QueryAsync<ObtenerAño>("Venta_ObtenerAños", commandType: CommandType.StoredProcedure);
+
+        }
+
+
+
 
 
     }

@@ -7,7 +7,9 @@
 }
 
 <h1>Enfoque en beneficios</h1>
-<h3 class="mb-4">Total ganado en utilidad: @Model.TotalUtilidad</h3>
+<p class="mb-4 display-6">Total ganado en ventas: @Model.TotalVentas.ToString("N")</p>
+<p class="mb-4 display-6">Total gastado en compras: @Model.TotalCompras.ToString("N")</p>
+<p class="mb-4 display-6">Total ganado en utilidad: @Model.TotalUtilidad.ToString("N")</p>
 @* 
 @using (Html.BeginForm("Index", "EstadosReporte", FormMethod.Get))
 {

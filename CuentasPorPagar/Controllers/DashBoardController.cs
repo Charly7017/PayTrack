@@ -19,40 +19,39 @@ namespace CuentasPorPagar.Controllers
 
         public async Task<IActionResult> Index(int modelValue)
         {
-            //var usuarioId = servicioUsuarios.ObtenerUsuarioId();
             var comprasAnuales = await repositorioDashboard.ObtenerComprasAnuales();
             var comprasMensuales = await repositorioDashboard.ObtenerComprasMensuales();
-
-            //var comprasMensualesAgrupadas = ComprasAgrupadasPorMes(comprasMensuales);
-            //var comprasMensualesAgrupadas = comprasMensuales.GroupBy(p => p.Año);
-          
-
-
             var comprasMensualesAgrupadas = comprasMensuales.GroupBy(p => p.Año);
-
-            
-
+            //var años = ObtenerAñosCompra(comprasMensualesAgrupadas);
+            var años = ObtenerAñosCompra(comprasAnuales);
 
             var modelo = new DashBoardViewModel
             {
-                ComprasAnuales=comprasAnuales,
-                ModelValue= modelValue,
-                Meses=await ObtenerMesesCompras()
+                ComprasAnuales = comprasAnuales,
+                ModelValue = modelValue,
+                Años = años,
+                ComprasMensuales= comprasMensualesAgrupadas.FirstOrDefault().AsEnumerable(),
+                //Años=await ObtenerAñosCompra(),
             };
 
+           //var compraPorAño = comprasMensualesAgrupadas.ToDictionary(g => g.Key, g => g.ToList());
             return View(modelo);
         }
 
- 
-      
         public async Task<IActionResult> Gastos(int modelValue)
         {
-            var gastosAnuales=await repositorioDashboard.ObtenerGastosAnuales();
+            var gastosAnuales = await repositorioDashboard.ObtenerGastosAnuales();
+            var gastosMensuales = await repositorioDashboard.ObtenerGastosMensuales();
+            var gastosMensualesAgrupados = gastosMensuales.GroupBy(p=>p.Año);
+            var años = ObtenerAñosGasto(gastosAnuales);
+
 
             var modelo = new DashBoardViewModel
             {
                 GastosAnuales = gastosAnuales,
-                ModelValue=modelValue
+                ModelValue = modelValue,
+                Años = años,
+                GastosMensuales= gastosMensualesAgrupados.FirstOrDefault().AsEnumerable(),
             };
 
 
@@ -63,11 +62,18 @@ namespace CuentasPorPagar.Controllers
         public async Task<IActionResult> Ventas(int modelValue)
         {
             var ventasAnuales = await repositorioDashboard.ObtenerVentasAnuales();
+            var ventasMensuales = await repositorioDashboard.ObtenerVentasMensuales();
+            var ventasMensualesAgrupadas = ventasMensuales.GroupBy(p=>p.Año);
+            var años = ObtenerAñosVenta(ventasAnuales);
+
+
 
             var modelo = new DashBoardViewModel
             {
                 VentasAnuales = ventasAnuales,
-                ModelValue = modelValue
+                ModelValue = modelValue,
+                Años=años,
+                VentasMensuales= ventasMensualesAgrupadas.FirstOrDefault().AsEnumerable(),
             };
 
 
@@ -75,20 +81,35 @@ namespace CuentasPorPagar.Controllers
         }
 
 
-        //private async Task<IEnumerable<CompraMensualTotal>> ComprasAgrupadasPorMes(IEnumerable<CompraMensualTotal> comprasMensuales)
+
+      
+        //private IEnumerable<SelectListItem> ObtenerAñosCompra(IEnumerable<IGrouping<int, CompraMensualTotal>> comprasMensualesAgrupadas)
         //{
-        //    return comprasMensuales.GroupBy(p=>p.Mes).Select(p=>);
+        //    var años = comprasMensualesAgrupadas.Select(p => p.Key).Select(p => new SelectListItem(p.ToString(), p.ToString()));
+
+        //    return años;
         //}
 
-
-
-        private async Task<IEnumerable<SelectListItem>> ObtenerMesesCompras()
+        private IEnumerable<SelectListItem> ObtenerAñosCompra(IEnumerable<CompraAnualTotal> compraAnualTotal)
         {
-            var meses = await repositorioDashboard.ObtenerMeses();
-            
+            var años = compraAnualTotal.Select(p => p.ComprasAño).Select(p => new SelectListItem(p.ToString(), p.ToString()));
+
+            return años;
+        }
 
 
-            return meses.Select(p => new SelectListItem(p.Mes.ToString(), "10"));
+        private IEnumerable<SelectListItem> ObtenerAñosGasto(IEnumerable<GastoAnualTotal> compraAnualTotal)
+        {
+            var años = compraAnualTotal.Select(p => p.GastosAño).Select(p => new SelectListItem(p.ToString(), p.ToString()));
+
+            return años;
+        }
+
+        private IEnumerable<SelectListItem> ObtenerAñosVenta(IEnumerable<VentaAnualTotal> compraAnualTotal)
+        {
+            var años = compraAnualTotal.Select(p => p.VentasAño).Select(p => new SelectListItem(p.ToString(), p.ToString()));
+
+            return años;
         }
 
 

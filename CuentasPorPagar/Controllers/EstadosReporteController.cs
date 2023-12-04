@@ -33,10 +33,12 @@ namespace CuentasPorPagar.Controllers
                 {
                     if (p.Utilidad > 0)
                     {
-                        return p.Utilidad*-1;
+                        return p.Utilidad * -1;
                     }
                     return 0;
-                })
+                }),
+                TotalCompras = beneficiosDiarios.Sum(p => p.TotalCompras),
+                TotalVentas = beneficiosDiarios.Sum(p=>p.TotalVentas)
             };
 
             modelo.TotalUtilidad*=-1;
@@ -45,18 +47,6 @@ namespace CuentasPorPagar.Controllers
         }
 
 
-        private decimal ObtenerTotalUtilidad(IEnumerable<EstadoReporteViewModel> beneficiosDiarios,EstadoReporteViewModel obj)
-        {
-            var total = obj.TotalUtilidad;
-
-            foreach (var item in beneficiosDiarios)
-            {
-                total+= item.TotalUtilidad;
-            }
-
-            return total;
-
-        }
-
+       
     }
 }

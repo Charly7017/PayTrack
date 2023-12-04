@@ -7,9 +7,8 @@
 
 
 <partial name="_Submenu" model="SubMenuDashboard.Gastos"/>
-
 <partial name="_Links" />
-
+<partial name="_SelectAño" model="Model.Años" />
 <partial name="_EstadisticasGastos" model="@Model.ModelValue" />
 
 
@@ -18,9 +17,11 @@
     <script>
 
 
-        var barchartCanvas = document.querySelector("#barchart")
+        var meses = []
         var años = []
         var gastosAnuales = []
+        var gastosMensuales=[]
+        var gastosDiarios=[]
         var color = "blue"
 
         @if (Model.GastosAnuales.Count() > 0)
@@ -33,7 +34,18 @@
             }  
         }
 
-        new Chart("myChart", {
+        @if (Model.GastosMensuales.Count()>0)
+        {
+            foreach (var item in Model.GastosMensuales)
+            {
+                @:meses.push("@item.Mes")
+                @:gastosMensuales.push("@item.Total")
+
+            }
+        }
+
+
+            new Chart("myChartAnual", {
             type: "bar",
             data: {
                 labels: años,
@@ -56,6 +68,57 @@
                 }
             }
         });
+
+
+        new Chart("myChartMensual", {
+            type: "bar",
+            data: {
+                labels: meses,
+                datasets: [{
+                    backgroundColor: color,
+                    data: gastosMensuales
+                }]
+            },
+            options: {
+                legend: { display: false },
+                responsive: true,
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true,
+                            stepSize: 1,
+                            precision: 0
+                        }
+                    }],
+                }
+            }
+        });
+
+        new Chart("myChartDiario", {    
+            type: "bar",
+            data: {
+                labels: [1, 3, 4],
+                datasets: [{
+                    backgroundColor: color,
+                    data: [2, 5, 7]
+                }]
+            },
+            options: {
+                legend: { display: false },
+                responsive: true,
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true,
+                            stepSize: 1,
+                            precision: 0
+                        }
+                    }],
+                }
+            }
+        });
+
+
     </script>
 
 }
