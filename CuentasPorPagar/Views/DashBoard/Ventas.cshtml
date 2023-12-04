@@ -8,7 +8,16 @@
 
 <partial name="_Submenu" model="SubMenuDashboard.Ventas"/>
 <partial name="_Links" />
-<partial name="_SelectAño" model="Model.Años" />
+
+<select class="form-control-sm" id="ventas">
+    @foreach (var años in Model.Años)
+    {
+        <option value="@años.Value">@años.Text</option>
+    }
+</select>
+
+
+@* <partial name="_SelectAño" model="Model.Años" /> *@
 <partial name="_EstadisticasVentas" model="@Model.ModelValue" />
 
 
@@ -17,13 +26,14 @@
 
     <script>
 
+        $(document).ready(function () {
 
-        var meses = []
-        var años = []
-        var ventasAnuales = []
-        var ventasMensuales=[]
-        var ventasDiarias = []
-        var color = "blue"
+            var meses = []
+            var años = []
+            var ventasAnuales = []
+            var ventasMensuales = []
+            var ventasDiarias = []
+            var color = "blue"
 
         @if (Model.VentasAnuales.Count() > 0)
         {
@@ -46,79 +56,141 @@
         }
 
 
+                $("#ventas").change(function () {
 
-        new Chart("myChartAnual", {
-            type: "bar",
-            data: {
-                labels: años,
-                datasets: [{
-                    backgroundColor: color,
-                    data: ventasAnuales
-                }]
-            },
-            options: {
-                legend: { display: false },
-                responsive: true,
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true,
-                            stepSize: 1,
-                            precision: 0
+                    var select = document.querySelector("#ventas")
+                    var valorSelect = parseInt(select.value)
+
+                    console.log(valorSelect)
+
+                    $.ajax({
+                        type: "GET",
+                        url: "/DashBoard/Ventas/",
+                        dataType: "json",
+                        data: { año: valorSelect },
+                        success: function (response) {
+
+                            console.log(response)
+                            var labels = response.map(item => item.mes)
+                            var data = response.map(item => item.total)
+
+                            new Chart("myChartMensual", {
+                                type: "bar",
+                                data: {
+                                    labels: labels,
+                                    datasets: [{
+                                        backgroundColor: "blue",
+                                        data: data
+                                    }]
+                                },
+                                options: {
+                                    legend: { display: false },
+                                    responsive: true,
+                                    scales: {
+                                        yAxes: [{
+                                            ticks: {
+                                                beginAtZero: true,
+                                                stepSize: 1,
+                                                precision: 0
+                                            }
+                                        }],
+                                    }
+                                }
+                            });
+
+
+
+
+                        },
+                        error: function (xmlHttpRequest, textStatus, errorThrown) {
+                            console.log(xmlHttpRequest)
                         }
-                    }],
+                    });
+
+                })
+
+
+
+
+
+
+
+                new Chart("myChartAnual", {
+                    type: "bar",
+                    data: {
+                        labels: años,
+                        datasets: [{
+                            backgroundColor: color,
+                            data: ventasAnuales
+                        }]
+                    },
+                    options: {
+                        legend: { display: false },
+                        responsive: true,
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true,
+                                    stepSize: 1,
+                                    precision: 0
+                                }
+                            }],
+                        }
+                    }
+                });
+
+            new Chart("myChartMensual", {
+                type: "bar",
+                data: {
+                    labels: meses,
+                    datasets: [{
+                        backgroundColor: color,
+                        data: ventasMensuales
+                    }]
+                },
+                options: {
+                    legend: { display: false },
+                    responsive: true,
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true,
+                                stepSize: 1,
+                                precision: 0
+                            }
+                        }],
+                    }
                 }
-            }
+            });
+
+
+            new Chart("myChartDiario", {
+                type: "bar",
+                data: {
+                    labels: [1, 3, 4],
+                    datasets: [{
+                        backgroundColor: color,
+                        data: [2, 5, 7]
+                    }]
+                },
+                options: {
+                    legend: { display: false },
+                    responsive: true,
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true,
+                                stepSize: 1,
+                                precision: 0
+                            }
+                        }],
+                    }
+                }
+            });
+            
+
         });
 
-        new Chart("myChartMensual", {
-            type: "bar",
-            data: {
-                labels: meses,
-                datasets: [{
-                    backgroundColor: color,
-                    data: ventasMensuales
-                }]
-            },
-            options: {
-                legend: { display: false },
-                responsive: true,
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true,
-                            stepSize: 1,
-                            precision: 0
-                        }
-                    }],
-                }
-            }
-        });
-
-
-        new Chart("myChartDiario", {
-            type: "bar",
-            data: {
-                labels: [1, 3, 4],
-                datasets: [{
-                    backgroundColor: color,
-                    data: [2, 5, 7]
-                }]
-            },
-            options: {
-                legend: { display: false },
-                responsive: true,
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true,
-                            stepSize: 1,
-                            precision: 0
-                        }
-                    }],
-                }
-            }
-        });
 
 
 

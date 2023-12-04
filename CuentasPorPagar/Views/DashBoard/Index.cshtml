@@ -6,7 +6,7 @@
 <partial name="_Submenu" model="SubMenuDashboard.Index"/>
 <partial name="_Links" />
 
-<select class="form-control-sm">
+<select class="form-control-sm" id="compras">
     @foreach (var años in Model.Años)
     {
         <option value="@años.Value">@años.Text</option>
@@ -21,117 +21,169 @@
 @section Scripts {
 
     <script>
-   
-        var meses=[]
-        var años = []
-        var comprasAnuales = []
-        var comprasMensuales=[]
-        var comprasDiarias=[]
-        var color="blue"
 
-        @if (Model.ComprasAnuales.Count() > 0)
-        {
-            foreach (var item in Model.ComprasAnuales)
+        $(document).ready(function () {
+         
+            var meses = []
+            var años = []
+            var comprasAnuales = []
+            var comprasMensuales = []
+            var comprasDiarias = []
+            var color = "blue"
+
+
+            @if (Model.ComprasAnuales.Count() > 0)
             {
-                @:años.push("@item.ComprasAño")
-                @:comprasAnuales.push("@item.Total")
+                foreach (var item in Model.ComprasAnuales)
+                {
+                    @:años.push("@item.ComprasAño")
+                    @:comprasAnuales.push("@item.Total")
 
+                }
             }
-        }
 
-        @if (Model.ComprasMensuales.Count()>0)
-        {
-            foreach (var item in Model.ComprasMensuales)
+            @if (Model.ComprasMensuales.Count() > 0)
             {
-                @:meses.push("@item.Mes")
-                @:comprasMensuales.push("@item.Total")
-            }
-        }
-
-        
-
-
-      
-
-        new Chart("myChartAnual", {
-            type: "bar",
-            data: {
-                labels: años,
-                datasets: [{
-                    backgroundColor: color,
-                    data: comprasAnuales
-                }]
-            },
-            options: {
-                legend: { display: false },
-                responsive: true,
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true,
-                            stepSize: 1,
-                            precision: 0
-                        }
-                    }],
+                foreach (var item in Model.ComprasMensuales)
+                {
+                    @:meses.push("@item.Mes")
+                    @:comprasMensuales.push("@item.Total")
                 }
             }
+
+
+            $("#compras").change(function () {
+
+                var select = document.querySelector("#compras")
+                var valorSelect = parseInt(select.value)
+
+                console.log(valorSelect)
+
+                $.ajax({
+                    type: "GET",
+                    url: "/DashBoard/Index/",
+                    dataType: "json",
+                    data: { año: valorSelect },
+                    success: function (response) {
+                        
+                        //console.log(response)
+                        var labels=response.map(item=>item.mes)
+                        var data=response.map(item=>item.total)
+
+                            new Chart("myChartMensual", {
+                                type: "bar",
+                                data: {
+                                    labels: labels,
+                                    datasets: [{
+                                        backgroundColor: "blue",
+                                        data: data
+                                    }]
+                                },
+                                options: {
+                                    legend: { display: false },
+                                    responsive: true,
+                                    scales: {
+                                        yAxes: [{
+                                            ticks: {
+                                                beginAtZero: true,
+                                                stepSize: 1,
+                                                precision: 0
+                                            }
+                                        }],
+                                    }
+                                }
+                            });
+
+                        
+                  
+                        
+                    },
+                    error: function (xmlHttpRequest, textStatus, errorThrown) {
+                        console.log(xmlHttpRequest)
+                    }
+                });
+
+            })
+
+            var anual = new Chart("myChartAnual", {
+                type: "bar",
+                data: {
+                    labels: años,
+                    datasets: [{
+                        backgroundColor: color,
+                        data: comprasAnuales
+                    }]
+                },
+                options: {
+                    legend: { display: false },
+                    responsive: true,
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true,
+                                stepSize: 1,
+                                precision: 0
+                            }
+                        }],
+                    }
+                }
+            });
+
+
+            var mensual=new Chart("myChartMensual", {
+                type: "bar",
+                data: {
+                    labels: meses,
+                    datasets: [{
+                        backgroundColor: color,
+                        data: comprasMensuales
+                    }]
+                },
+                options: {
+                    legend: { display: false },
+                    responsive: true,
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true,
+                                stepSize: 1,
+                                precision: 0
+                            }
+                        }],
+                    }
+                }
+            });
+
+
+
+            var diario=new Chart("myChartDiario", {
+                type: "bar",
+                data: {
+                    labels: [1, 3, 4],
+                    datasets: [{
+                        backgroundColor: color,
+                        data: [2, 5, 7]
+                    }]
+                },
+                options: {
+                    legend: { display: false },
+                    responsive: true,
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true,
+                                stepSize: 1,
+                                precision: 0
+                            }
+                        }],
+                    }
+                }
+            });
+
         });
 
 
-        new Chart("myChartMensual", {
-            type: "bar",
-            data: {
-                labels: meses,
-                datasets: [{
-                    backgroundColor: color,
-                    data: comprasMensuales
-                }]
-            },
-            options: {
-                legend: { display: false },
-                responsive: true,
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true,
-                            stepSize: 1,
-                            precision: 0
-                        }
-                    }],
-                }
-            }
-        });
-
-
-
-        new Chart("myChartDiario", {
-            type: "bar",
-            data: {
-                labels: [1, 3, 4],
-                datasets: [{
-                    backgroundColor: color,
-                    data: [2,5,7]
-                }]
-            },
-            options: {
-                legend: { display: false },
-                responsive: true,
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true,
-                            stepSize: 1,
-                            precision: 0
-                        }
-                    }],
-                }
-            }
-        });
-
-
-
-
-
+     
 
 
 

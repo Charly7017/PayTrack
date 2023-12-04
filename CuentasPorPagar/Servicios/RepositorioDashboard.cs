@@ -16,6 +16,10 @@ namespace CuentasPorPagar.Servicios
         Task<IEnumerable<ObtenerAño>> ObtenerAñosGasto();
         Task<IEnumerable<GastoMensualTotal>> ObtenerGastosMensuales();
         Task<IEnumerable<VentaMensualTotal>> ObtenerVentasMensuales();
+        //Task<CompraMensualTotal> ObtenerComprasPorAño(int año);
+        Task<IEnumerable<CompraMensualTotal>> ObtenerComprasPorAño(int valorSelect);
+        Task<IEnumerable<VentaMensualTotal>> ObtenerVentasPorAño(int año);
+        Task<IEnumerable<GastoMensualTotal>> ObtenerGastosPorAño(int año);
     }
     public class RepositorioDashboard:IRepositorioDashboard
     {
@@ -40,7 +44,16 @@ namespace CuentasPorPagar.Servicios
             return await connection.QueryAsync<CompraMensualTotal>("Compra_ObtenerComprasMensuales", commandType: CommandType.StoredProcedure);
         }
 
-        
+        public async Task<IEnumerable<CompraMensualTotal>> ObtenerComprasPorAño(int año)
+        {
+            using var connection = new SqlConnection(connectionString);
+            
+
+
+            return await connection.QueryAsync<CompraMensualTotal>("Compra_ObtenerComprasMensualesPorAño",new { año},commandType:CommandType.StoredProcedure);
+
+        }
+
         public async Task<IEnumerable<GastoAnualTotal>> ObtenerGastosAnuales()
         {
             using var connection = new SqlConnection(connectionString);
@@ -56,6 +69,15 @@ namespace CuentasPorPagar.Servicios
             return await connection.QueryAsync<GastoMensualTotal>("Gasto_ObtenerGastosMensuales",commandType:CommandType.StoredProcedure);
         }
 
+        public async Task<IEnumerable<GastoMensualTotal>> ObtenerGastosPorAño(int año)
+        {
+            using var connection = new SqlConnection(connectionString);
+
+
+
+            return await connection.QueryAsync<GastoMensualTotal>("Compra_ObtenerComprasMensualesPorAño", new { año }, commandType: CommandType.StoredProcedure);
+
+        }
 
         public async Task<IEnumerable<VentaAnualTotal>> ObtenerVentasAnuales()
         {
@@ -72,6 +94,18 @@ namespace CuentasPorPagar.Servicios
 
             return await connection.QueryAsync<VentaMensualTotal>("Venta_ObtenerVentasMensuales", commandType: CommandType.StoredProcedure);
         }
+
+
+        public async Task<IEnumerable<VentaMensualTotal>> ObtenerVentasPorAño(int año)
+        {
+            using var connection = new SqlConnection(connectionString);
+
+
+
+            return await connection.QueryAsync<VentaMensualTotal>("Compra_ObtenerComprasMensualesPorAño", new { año }, commandType: CommandType.StoredProcedure);
+
+        }
+
 
 
 
@@ -100,7 +134,7 @@ namespace CuentasPorPagar.Servicios
 
         }
 
-
+  
 
 
 

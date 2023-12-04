@@ -1,29 +1,13 @@
 ﻿@model EstadoReporteViewModel
 @{
     ViewData["Title"] = "Estado reporte";
-    // int currentYear = DateTime.Now.Year;
-    // // Asegúrate de convertir el valor de la query string a un entero, si es necesario.
-    // string selectedYear = HttpContext.Request.Query["year"];
 }
 
 <h1>Enfoque en beneficios</h1>
-<p class="mb-4 display-6">Total ganado en ventas: @Model.TotalVentas.ToString("N")</p>
-<p class="mb-4 display-6">Total gastado en compras: @Model.TotalCompras.ToString("N")</p>
-<p class="mb-4 display-6">Total ganado en utilidad: @Model.TotalUtilidad.ToString("N")</p>
-@* 
-@using (Html.BeginForm("Index", "EstadosReporte", FormMethod.Get))
-{
-    <p>
-        Seleccione el año:
-        <select name="year" onchange="this.form.submit()">
-            <option value="">--Seleccione un año--</option>
-            @for (var year = currentYear; year >= currentYear - 10; year--)
-            {
-                <option value="@year" @(selectedYear == year.ToString() ? "selected=\"selected\"" : "")>@year</option>
-            }
-        </select>
-    </p>
-} *@
+<p class="mb-4 display-6">Total en ventas: @Model.TotalVentas.ToString("N")</p>
+<p class="mb-4 display-6">Total en compras: @Model.TotalCompras.ToString("N")</p>
+<p class="mb-4 display-6">Total en utilidad: @Model.TotalUtilidad.ToString("N")</p>
+
 
 
 <table class="table" id="example">
@@ -66,7 +50,7 @@
                 rowReorder: true
             });
 
-            console.log(2);
+        
 
             // document.getElementById('yearSelect').onchange = function () {
             //     document.getElementById('yearForm').submit();

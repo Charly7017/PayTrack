@@ -3,12 +3,12 @@
 <ul class="nav nav-pills nav-fill mb-3">
 
     <l1 class="nav-item">
-        <a class="nav-link @(Model==SubMenuDashboard.Index ? "active":null)" asp-action="Index">Compras</a>
+        <a class="nav-link @(Model==SubMenuDashboard.Index ? "active":null)" asp-action="Index" asp-all-route-modelValue="2">Compras</a>
     </l1>
     <l1 class="nav-item">
-        <a class="nav-link @(Model==SubMenuDashboard.Gastos ? "active":null)" asp-action="Gastos" asp-route-modelValue="1">Gastos</a>
+        <a class="nav-link @(Model==SubMenuDashboard.Gastos ? "active":null)" asp-action="Gastos" asp-route-modelValue="2">Gastos</a>
     </l1>
     <l1 class="nav-item">
-        <a class="nav-link @(Model==SubMenuDashboard.Ventas ? "active":null)" asp-action="Ventas" asp-route-modelValue="1">Ventas</a>
+        <a class="nav-link @(Model==SubMenuDashboard.Ventas ? "active":null)" asp-action="Ventas" asp-route-modelValue="2">Ventas</a>
     </l1>
 </ul>
