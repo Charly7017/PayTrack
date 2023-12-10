@@ -29,19 +29,12 @@ namespace CuentasPorPagar.Controllers
             var modelo = new EstadoReporteViewModel
             {
                 BeneficiosDiarios = beneficiosDiarios,
-                TotalUtilidad = beneficiosDiarios.Sum(p =>
-                {
-                    if (p.Utilidad > 0)
-                    {
-                        return p.Utilidad * -1;
-                    }
-                    return 0;
-                }),
+                TotalUtilidad = beneficiosDiarios.Sum(p =>p.Utilidad),
                 TotalCompras = beneficiosDiarios.Sum(p => p.TotalCompras),
                 TotalVentas = beneficiosDiarios.Sum(p=>p.TotalVentas)
             };
 
-            modelo.TotalUtilidad*=-1;
+            modelo.TotalUtilidad*=1;
 
             return View(modelo);
         }

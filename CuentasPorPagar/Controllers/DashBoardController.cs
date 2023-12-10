@@ -18,39 +18,36 @@ namespace CuentasPorPagar.Controllers
             this.servicioUsuarios = servicioUsuarios;
         }
 
+
+
+
         public async Task<IActionResult> Index(int modelValue, int año)
         {
             var comprasAnuales = await repositorioDashboard.ObtenerComprasAnuales();
             var comprasMensuales = await repositorioDashboard.ObtenerComprasMensuales();
             var comprasMensualesAgrupadas = comprasMensuales.GroupBy(p => p.Año);
             var años = ObtenerAñosCompra(comprasAnuales);
-
-            // Check if the request is an AJAX request
+            var modelo = new DashBoardViewModel
+            {
+                ComprasAnuales = comprasAnuales,
+                ModelValue = modelValue,
+                Años = años,
+            };
+            //si es llamada ajax
             if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
             {
-                // Return JSON data for AJAX request
-                var comprasMensualesData = (año == 0)
-                    ? comprasMensualesAgrupadas.FirstOrDefault().AsEnumerable()
-                    : await repositorioDashboard.ObtenerComprasPorAño(año);
+                var comprasMensualesData = await repositorioDashboard.ObtenerComprasPorAño(año);
 
-                // Return the JSON data
+                //var comprasMensualesData = (año == 0)
+                //    ? comprasMensualesAgrupadas.FirstOrDefault().AsEnumerable()
+                //    : await repositorioDashboard.ObtenerComprasPorAño(año);
+
+                //var comprasMensualesData = await repositorioDashboard.ObtenerComprasPorAño(año);
                 return Json(comprasMensualesData);
             }
-            else
-            {
-                // Regular request, process as usual
-                var modelo = new DashBoardViewModel
-                {
-                    ComprasAnuales = comprasAnuales,
-                    ModelValue = modelValue,
-                    Años = años,
-                    ComprasMensuales = (año == 0)
-                        ? comprasMensualesAgrupadas.FirstOrDefault().AsEnumerable()
-                        : await repositorioDashboard.ObtenerComprasPorAño(año),
-                };
 
-                return View(modelo);
-            }
+            // For non-AJAX requests, return the full view
+            return View(modelo);
         }
 
         public async Task<IActionResult> Gastos(int modelValue,int año)
@@ -58,30 +55,23 @@ namespace CuentasPorPagar.Controllers
             var gastosAnuales = await repositorioDashboard.ObtenerGastosAnuales();
             var gastosMensuales = await repositorioDashboard.ObtenerGastosMensuales();
             var gastosMensualesAgrupados = gastosMensuales.GroupBy(p=>p.Año);
-            var años = ObtenerAñosGasto(gastosAnuales); 
-            
+            var años = ObtenerAñosGasto(gastosAnuales);
+
+            var modelo = new DashBoardViewModel
+            {
+                GastosAnuales = gastosAnuales,
+                ModelValue = modelValue,
+                Años = años,
+            };
+
             if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
             {
-                // Return JSON data for AJAX request
-                var gastosMensualesData = (año == 0)
-                    ? gastosMensualesAgrupados.FirstOrDefault().AsEnumerable()
-                    : await repositorioDashboard.ObtenerGastosPorAño(año);
-
-                // Return the JSON data
+                var gastosMensualesData = await repositorioDashboard.ObtenerGastosPorAño(año);
                 return Json(gastosMensualesData);
-            } 
-            else
-            {
-                var modelo = new DashBoardViewModel
-                {
-                    GastosAnuales = gastosAnuales,
-                    ModelValue = modelValue,
-                    Años = años,
-                    GastosMensuales = gastosMensualesAgrupados.FirstOrDefault().AsEnumerable(),
-                };
-                return View(modelo);
             }
-         
+
+            return View(modelo);
+
         }
 
 
@@ -92,31 +82,23 @@ namespace CuentasPorPagar.Controllers
             var ventasMensualesAgrupadas = ventasMensuales.GroupBy(p=>p.Año);
             var años = ObtenerAñosVenta(ventasAnuales);
 
+
+            var modelo = new DashBoardViewModel
+            {
+                VentasAnuales = ventasAnuales,
+                ModelValue = modelValue,
+                Años = años,
+            };
+
             if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
             {
-                // Return JSON data for AJAX request
-                var ventasMensualesData = (año == 0)
-                    ? ventasMensualesAgrupadas.FirstOrDefault().AsEnumerable()
-                    : await repositorioDashboard.ObtenerVentasPorAño(año);
-
-                // Return the JSON data
+                var ventasMensualesData = await repositorioDashboard.ObtenerVentasPorAño(año);
                 return Json(ventasMensualesData);
             }
-            else
-            {
-                var modelo = new DashBoardViewModel
-                {
-                    VentasAnuales = ventasAnuales,
-                    ModelValue = modelValue,
-                    Años = años,
-                    VentasMensuales = ventasMensualesAgrupadas.FirstOrDefault().AsEnumerable(),
-                };
 
 
-                return View(modelo);
-            }
+            return View(modelo);
 
-           
         }
 
 

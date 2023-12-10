@@ -35,30 +35,77 @@
             var gastosMensuales = []
             var gastosDiarios = []
             var color = "blue"
+            var myChartMensual;
 
-        @if (Model.GastosAnuales.Count() > 0)
-        {
-            foreach (var item in Model.GastosAnuales)
+            var select = document.querySelector("#gastos")
+            var valorSelect = parseInt(select.value)
+
+
+
+            @if (Model.GastosAnuales.Count() > 0)
             {
-                @:años.push("@item.GastosAño")
-                @:gastosAnuales.push("@item.Total")
+                foreach (var item in Model.GastosAnuales)
+                {
+                    @:años.push("@item.GastosAño")
+                    @:gastosAnuales.push("@item.Total")
 
+                }
             }
-        }
 
-        @if (Model.GastosMensuales.Count() > 0)
-        {
-            foreach (var item in Model.GastosMensuales)
+            @*@if (Model.GastosMensuales.Count() > 0)
             {
-                @:meses.push("@item.Mes")
-                @:gastosMensuales.push("@item.Total")
+                foreach (var item in Model.GastosMensuales)
+                {
+                    @:meses.push("@item.Mes")
+                    @:gastosMensuales.push("@item.Total")
 
-            }
-        }
+                }
+            }*@
+
+                $.ajax({
+                    type: "GET",
+                    url: "/DashBoard/Gastos/",
+                    dataType: "json",
+                    data: { año: valorSelect },
+                    success: function (response) {
+
+                        console.log(response)
+                        var labels = response.map(item => item.mes)
+                        var data = response.map(item => item.total)
+
+                        myChartMensual = new Chart(document.getElementById("myChartMensual"), {
+                            type: "bar",
+                            data: {
+                                labels: labels,
+                                datasets: [{
+                                    backgroundColor: "blue",
+                                    data: data
+                                }]
+                            },
+                            options: {
+                                legend: { display: false },
+                                responsive: true,
+                                scales: {
+                                    yAxes: [{
+                                        ticks: {
+                                            beginAtZero: true,
+                                            stepSize: 1,
+                                            precision: 0
+                                        }
+                                    }],
+                                }
+                            }
+                        });
+                    },
+                    error: function (xmlHttpRequest, textStatus, errorThrown) {
+                        console.log(xmlHttpRequest)
+                    }
+                });
+
+
 
 
                 $("#gastos").change(function () {
-
                     var select = document.querySelector("#gastos")
                     var valorSelect = parseInt(select.value)
 
@@ -71,37 +118,45 @@
                         data: { año: valorSelect },
                         success: function (response) {
 
-                            console.log(response)
+                            
                             var labels = response.map(item => item.mes)
                             var data = response.map(item => item.total)
 
-                            new Chart("myChartMensual", {
-                                type: "bar",
-                                data: {
-                                    labels: labels,
-                                    datasets: [{
-                                        backgroundColor: "blue",
-                                        data: data
-                                    }]
-                                },
-                                options: {
-                                    legend: { display: false },
-                                    responsive: true,
-                                    scales: {
-                                        yAxes: [{
-                                            ticks: {
-                                                beginAtZero: true,
-                                                stepSize: 1,
-                                                precision: 0
-                                            }
-                                        }],
+
+
+                            if (myChartMensual) {
+                                // Update chart data
+                                myChartMensual.data.labels = labels;
+                                myChartMensual.data.datasets.forEach((dataset) => {
+                                    dataset.data = data;
+                                });
+                                myChartMensual.update();
+                            }
+                            else {
+                                myChartMensual = new Chart(document.getElementById("myChartMensual"), {
+                                    type: "bar",
+                                    data: {
+                                        labels: labels,
+                                        datasets: [{
+                                            backgroundColor: "blue",
+                                            data: data
+                                        }]
+                                    },
+                                    options: {
+                                        legend: { display: false },
+                                        responsive: true,
+                                        scales: {
+                                            yAxes: [{
+                                                ticks: {
+                                                    beginAtZero: true,
+                                                    stepSize: 1,
+                                                    precision: 0
+                                                }
+                                            }],
+                                        }
                                     }
-                                }
-                            });
-
-
-
-
+                                });
+                            }
                         },
                         error: function (xmlHttpRequest, textStatus, errorThrown) {
                             console.log(xmlHttpRequest)

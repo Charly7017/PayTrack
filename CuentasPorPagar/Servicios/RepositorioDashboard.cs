@@ -75,7 +75,7 @@ namespace CuentasPorPagar.Servicios
 
 
 
-            return await connection.QueryAsync<GastoMensualTotal>("Compra_ObtenerComprasMensualesPorAño", new { año }, commandType: CommandType.StoredProcedure);
+            return await connection.QueryAsync<GastoMensualTotal>("Gasto_ObtenerGastosMensualesPorAño", new { año }, commandType: CommandType.StoredProcedure);
 
         }
 
@@ -102,7 +102,7 @@ namespace CuentasPorPagar.Servicios
 
 
 
-            return await connection.QueryAsync<VentaMensualTotal>("Compra_ObtenerComprasMensualesPorAño", new { año }, commandType: CommandType.StoredProcedure);
+            return await connection.QueryAsync<VentaMensualTotal>("Venta_ObtenerVentasMensualesPorAño", new { año }, commandType: CommandType.StoredProcedure);
 
         }
 
