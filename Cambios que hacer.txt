@@ -1,2 +1,0 @@
-Que en compras me salga en la tabla el empleado que creo esa compra
-Agregar la cantidad de devolucion en la tabla
